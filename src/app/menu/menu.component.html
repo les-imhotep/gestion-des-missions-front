@@ -1,7 +1,9 @@
 
 
-<section class="Employe">
-<nav class="navbar navbar-expand-lg navbar-light bg-light font-weight-bold">
+<section class ="barre de navigation">
+
+
+  <nav class="navbar-expand-lg navbar-light bg-light font-weight-bold">
   <a class="navbar-brand" href="#">Menu</a>
 
   <!-- Collapse button -->
@@ -14,13 +16,26 @@
 <div class="collapse navbar-collapse" id="basicExampleNav">
     <div class="navbar-nav mr-auto">
 
+       <!-- Menu de base -->
       <a class="nav-item nav-link active" routerLink="/accueil">Accueil<span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" routerLink="/gestion">Gestion des missions</a>
       <a class="nav-item nav-link" routerLink="/planning">Planning des missions</a>
       <a class="nav-item nav-link" routerLink="/primes">Primes</a>
+      <a class="nav-item nav-link" routerLink="/notesdefrais">Saisie des notes de frais</a>
+      <!-- Menu pour le role 'ROLE_MANAGER'-->
+      <a class="nav-item nav-link" routerLink="/validation" *ngIf="isManager()">Validation des missions</a>
+      <!-- Menu pour le role 'ROLE_ADMINISTRATEUR'-->
+      <a class="nav-item nav-link" routerLink="/nature" *ngIf="isAdmin()">Nature des missions</a>
       
-    
     </div>
+
+     <!-- Bouton de déconnexion -->
+    <div class="col-2">
+        <a  class="btn-sm btn-danger pull-right" (click)="seDeconnecter()">Se déconnecter</a>
+        </div>
   </div>
 </nav>
+
+
 </section>
+<router-outlet></router-outlet>

@@ -1,64 +1,43 @@
-<div class="container">
+ <div class="container">
 
-<header>
 
-  <!-- Entête -->
-  <h1 class="h1 h1-responsive">Gestion des missions</h1>
 
-  <!-- Bouton de déconnexion -->
-<div class="row">
-      <div class="col-10">
+ <header>
+       <!--  Bandeau avec le titre de l'application + le menu -->
+      <app-bandeau></app-bandeau>      
+  </header> 
+                
+      
+      
+  <body>
+
+    <h3>Bienvenue !</h3>
+
+      <!-- Image d'accueil -->
+      <img src="/assets/image/imageaccueil.jpg" width=1115 height=743>
+          
+      
+      <div id="content">
+      <!-- Router -->
+      <router-outlet></router-outlet>
       </div>
-
-      <div class="col-2">
-      <a  class="btn-sm btn-danger pull-right" (click)="seDeconnecter()">Se déconnecter</a>
-      </div>
+       
+      
+  </body>
+              
+      
+      
+              
+  <footer>
+      <!-- Pied de page -->
+  </footer>
+            
+              
+      
+              
 </div>
+  
+  
+  
 
-<div class="barre"></div>
-
-<div class="col">
-</div>
-
- <!-- Navigation via un menu -->
-<div class="row">
-    <div class="col-12">
-<app-menu></app-menu>
-    </div>
-</div>
-
-</header>
-
-
-<body>
-
-<p>Hello ! </p>
-
-</body>
-
-
-<div class="container">
-<div id="content">
- <!-- le composant défini dans la route courante va être inséré à cet endroit -->
-
- <!-- au regard de la configuration précédente, 
-     /page1 va insérer le composant AComponent à cet emplacement
-     /page2 a insérer le composant BComponent à cet emplacement
- -->
- <router-outlet></router-outlet>
-
-</div>
-</div>
-
-
-
-
-
-<footer>
-  <!-- Pied de page -->
-  <p>test</p>
-</footer>
-
-
-
-</div>
+    

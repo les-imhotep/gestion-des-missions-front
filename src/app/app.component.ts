@@ -11,11 +11,11 @@ import {Collegue} from "./auth/auth.domains";
   selector: 'app-root',
   template: `
     <div>
-     
+    
       <div *ngIf="!(collegueConnecte | async).estAnonyme()">
         <span>{{(collegueConnecte | async).email}}</span>
         <span>({{(collegueConnecte | async).roles}})</span>
-        <a  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a>
+        <!-- <a  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a> -->
       </div>
     </div>
     <router-outlet></router-outlet>

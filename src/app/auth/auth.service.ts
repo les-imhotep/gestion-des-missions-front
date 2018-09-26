@@ -44,6 +44,15 @@ export class AuthService {
   }
 
   /**
+   * Interface Observable du collègue connecté.
+   *
+   * @returns {Observable<Collegue>}
+   */
+  getCollegue():Collegue {
+    return JSON.parse(localStorage.getItem("collegue"));
+  }
+
+  /**
    * Service permettant de vérifier si un collegue est authentifié.
    *
    * Une requête HTTP est déclenchée pour récupérer le collègue connecté s'il n'est pas en cache.
@@ -81,7 +90,7 @@ export class AuthService {
     return this._http.post(`${environment.baseUrl}${environment.apiLogin}`, new HttpParams().set('username', email).set('password', mdp), config)
       .pipe(
         map(colServeur => new Collegue(colServeur)),
-        tap(col => this.collegueConnecteSub.next(col) )
+        tap(col => {this.collegueConnecteSub.next(col); localStorage.setItem("collegue", JSON.stringify(col));} )
       );
   }
 
