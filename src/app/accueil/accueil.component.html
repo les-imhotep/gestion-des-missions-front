@@ -4,22 +4,30 @@
 
  <header>
        <!--  Bandeau avec le titre de l'application + le menu -->
-      <app-bandeau></app-bandeau>      
+          <app-bandeau></app-bandeau>      
   </header> 
                 
       
       
   <body>
 
-    <h3>Bienvenue !</h3>
+   
+      <div id="fond">
+          <div id="contenu">
+            <br>
+            Bienvenue !</div>
+        </div>
+    
 
-      <!-- Image d'accueil -->
-      <img src="/assets/image/imageaccueil.jpg" width=1115 height=743>
-          
+   
+      <!-- Image d'accueil 
+      <div id="fond">
+          <img src="/assets/image/imageaccueil.jpg" width=1115 height=743>
+      </div>   -->
       
+     <!-- Router -->
       <div id="content">
-      <!-- Router -->
-      <router-outlet></router-outlet>
+          <router-outlet></router-outlet>
       </div>
        
       

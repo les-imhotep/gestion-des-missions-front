@@ -14,19 +14,32 @@
             font-size : 320%;
             padding : 15px 50px 0 10px;
             letter-spacing : -1px;
-            border-right : 1px solid #eee;
-            z-index: 1;
-            position: relative;
+            border-right : 1px solid #eee;  
             }
         
-       // Mise en forme de l'image d'accueil
-       img {
-        opacity: 0.75;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
+
+       #contenu {
+        font-family : Century Gothic, "Trebuchet MS", Tahoma, Verdana;
+        color : rgb(206, 238, 206); 
+        text-align: center;
+        font-size : 500%;
+        padding : 15px 50px 0 10px;
+        letter-spacing : -1px;
+        border-right : 1px solid #eee;
         position: relative;
+        z-index: 10;
+       }     
+
+       // Mise en forme de l'image d'accueil
+       #fond {
+        background:url("/assets/image/imageaccueil - Copie.jpg") no-repeat center;
+        opacity: 0.75;
+        width:56.3%;
+        height:80%;
+        z-index: 1;
+        position: absolute;
     }
+
         // Titre de type h2 dans le header
         #header h2 {
         padding : 33px 0 5px 40px;

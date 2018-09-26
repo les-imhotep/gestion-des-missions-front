@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NoteDeFrais, Transport, NatureMission, Facturation } from '../../model';
+import { NoteDeFraisService } from '../../services/notedefrais.service';
 
 @Component({
   selector: 'app-saisie-note-de-frais',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaisieNoteDeFraisComponent implements OnInit {
 
-  constructor() { }
+  // Liste des notes de frais
+  @Input() noteDeFraisTab:NoteDeFrais[]
+
+  constructor(private _notedefraissrv:NoteDeFraisService) {
+
+
+   }
+ 
 
   ngOnInit() {
   }

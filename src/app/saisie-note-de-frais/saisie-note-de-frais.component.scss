@@ -1,0 +1,33 @@
+ 
+  h3 {
+    font-family : Century Gothic, "Trebuchet MS", Tahoma, Verdana;
+    color : rgb(118, 146, 118); 
+    text-align: center;
+    font-size : 150%;
+    padding : 15px 50px 0 10px;
+    letter-spacing : -1px;
+    border-right : 1px solid #eee;  
+    }
+
+  
+    #contenu {
+        font-family : Century Gothic, "Trebuchet MS", Tahoma, Verdana;
+        color : rgb(255, 255, 255); 
+        text-align: center;
+        font-size : 200%;
+        padding : 15px 50px 0 10px;
+        letter-spacing : -1px;
+        border-right : 1px solid #eee;
+        position: relative;
+        z-index: 10;
+       }     
+
+       // Mise en forme de l'image d'accueil
+       #fond {
+        background:url("/assets/image/notedefrais.jpg") no-repeat center;
+        opacity: 0.6;
+        width:60%;
+        height:60%;
+        z-index: 1;
+        position: absolute;
+    }

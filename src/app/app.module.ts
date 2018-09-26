@@ -26,6 +26,7 @@ const routes: Routes = [
   { path:'auth', component: AuthComponent},
   { path:'accueil', component: AccueilComponent},
   { path:'primes', component: PrimesComponent},
+  { path:'notedefrais', component: SaisieNoteDeFraisComponent},
   { path:'gestion', component: GestionMissionComponent},
   { path:'planning', component: PlanningComponent},
   { path:'validation', component: ValidationMissionComponent}, // Onglet disponible uniquement pour les managers
@@ -49,9 +50,8 @@ const routes: Routes = [
     ValidationMissionComponent,
     NatureMissionComponent,
     BandeauComponent,
-    AccueilComponen,
-    SaisieNoteDeFraisComponent,
-    SaisieNoteDeFraisComponentt
+    AccueilComponent,
+    SaisieNoteDeFraisComponent
 
   ],
   imports: [
