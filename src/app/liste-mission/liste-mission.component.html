@@ -1,3 +1,31 @@
-<p>
-  liste-mission works!
-</p>
+<div class="mt-4 ">
+
+
+  <table class="table table-hover">
+    <thead class="blue white-text ">
+      <tr>
+        <th scope="col">Date de début</th>
+        <th scope="col">Date de fin</th>
+        <th scope="col">Nature de Mission</th>
+        <th scope="col">Ville de départ</th>
+        <th scope="col">Ville d'arrivée</th>
+        <th scope="col">Transport</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Prime</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mission of missions">
+        <td>{{mission.dateDebut}}</td>
+        <td>{{mission.dateFin}}</td>
+        <td>{{mission.natureMission}}</td>
+        <td>{{mission.villeDepart}}</td>
+        <td>{{mission.villeArrivee}}</td>
+        <td>{{mission.transport}}</td>
+        <td>{{mission.statut}}</td>
+        <td>{{mission.prime}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>

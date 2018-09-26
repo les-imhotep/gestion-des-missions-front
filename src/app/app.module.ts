@@ -13,10 +13,13 @@ import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
 
 
+
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
+  { path: 'missions', component: ListeMissionComponent, canActivate: [StatutConnecteService] }, // /mission accessible uniquement si connecté
   { path: 'auth', component: AuthComponent },
   { path: '', redirectTo: '/tech', pathMatch: 'full' }
+
 ];
 
 
@@ -26,6 +29,7 @@ const routes: Routes = [
     TechComponent,
     AuthComponent,
     ListeMissionComponent,
+
 
   ],
   imports: [

@@ -1,22 +1,32 @@
 import { HttpClient } from "@angular/common/http";
 import { Mission } from "../model";
 import { environment } from "../environments/environment";
-import { Subject, Observable } from 'rxjs';
-import { map, filter, tap } from 'rxjs/operators';
-import { AuthService } from "../app/auth/auth.service";
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+
 const URL_BACKEND = environment.baseUrl
+@Injectable()
 export class MissionService {
     constructor(
-        private _http: HttpClient,
-        private _auth: AuthService
+        private _http: HttpClient
     ) { }
 
     listerMission(): Observable<Mission[]> {
         //recuperer la liste des mission coté serveur 
 
-        return this._http.get(URL_BACKEND + `this._auth.`)
-            .pipe(map(((data: any[]) => data.map(m =>
-                new Mission(m.dateDebut, m.dateFin, m.natureMission, m.villeDepart, m.villeArrivee, m.transport, m.statut, m.prime))))
+        return this._http.get(URL_BACKEND + 'missions')
+            .pipe(map(((data: any[]) => data.map(mission =>
+                new Mission(
+                    mission.id,
+                    mission.dateDebut,
+                    mission.dateFin,
+                    mission.natureMission,
+                    mission.villeDepart,
+                    mission.villeArrivee,
+                    mission.transport,
+                    mission.statut,
+                    mission.prime))))
             )
 
 

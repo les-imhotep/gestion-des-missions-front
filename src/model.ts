@@ -2,6 +2,7 @@ import { Collegue } from "./app/auth/auth.domains";
 
 export class Absence {
     constructor(
+        public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
         public collegue: Collegue
@@ -10,6 +11,7 @@ export class Absence {
 
 export class NoteDeFrais {
     constructor(
+        public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
         public natureMission: NatureMission,
@@ -23,7 +25,9 @@ export class NoteDeFrais {
 }
 
 export class NatureMission {
-    constructor(public facturation: Facturation,
+    constructor(
+        public id: Number,
+        public facturation: Facturation,
         public prime: boolean,
         public tjm: Number,
         public pourcentage: Number
@@ -33,6 +37,7 @@ export class NatureMission {
 
 export class Prime {
     constructor(
+        public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
         public natureMission: NatureMission,
@@ -44,6 +49,7 @@ export class Prime {
 
 export class Mission {
     constructor(
+        public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
         public natureMission: NatureMission,
