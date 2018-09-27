@@ -19,6 +19,21 @@ import {Collegue} from "./auth/auth.domains";
       </div>
     </div>
     <router-outlet></router-outlet>
+
+    <!--  Bandeau avec le titre de l'application + le menu -->
+    <header>
+    <app-bandeau></app-bandeau>  
+    </header>
+
+    <!-- Router -->
+    <div id="content">
+        <router-outlet></router-outlet>
+    </div>
+
+    <!-- Pied de page -->
+  <footer>
+  </footer>
+        
   `,
   styles: []
 })
