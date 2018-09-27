@@ -3,6 +3,7 @@ import { toDate } from "@angular/common/src/i18n/format_date";
 
 export class Absence {
     constructor(
+        public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
         public collegue: Collegue
@@ -11,6 +12,7 @@ export class Absence {
 
 export class NoteDeFrais {
     constructor(
+        public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
         public natureMission: NatureMission,
@@ -22,7 +24,7 @@ export class NoteDeFrais {
     ) { }
 
     static fromNoteDeFraisServeur(noteDeFraisServeur: any): NoteDeFrais {
-        const noteIhm = new NoteDeFrais(null, null, null, null, null, null, null);
+        const noteIhm = new NoteDeFrais(null, null, null, null, null, null, null, null);
         noteIhm.dateDebut = noteDeFraisServeur.dateDebut;
         noteIhm.dateFin = noteDeFraisServeur.dateFin;
         noteIhm.frais = noteDeFraisServeur.frais;
@@ -31,7 +33,7 @@ export class NoteDeFrais {
         noteIhm.villeArrivee = noteDeFraisServeur.villeArrivee;
         noteIhm.villeDepart = noteDeFraisServeur.villeDepart;
         return noteIhm;
-      }
+    }
 
 }
 
@@ -50,6 +52,7 @@ export class NatureMission {
 
 export class Prime {
     constructor(
+        public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
         public natureMission: NatureMission,
@@ -61,6 +64,7 @@ export class Prime {
 
 export class Mission {
     constructor(
+        public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
         public natureMission: NatureMission,

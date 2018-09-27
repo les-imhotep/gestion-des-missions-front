@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Collegue} from "./auth.domains";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {Observable} from "rxjs/internal/Observable";
-import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
-import {Subject, of} from "rxjs";
-import {catchError, map, tap} from "rxjs/operators";
+import { Collegue } from "./auth.domains";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { environment } from "../../environments/environment";
+import { Observable } from "rxjs/internal/Observable";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
+import { Subject, of } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
 
 /**
  * Collègue anonyme.
@@ -29,9 +29,9 @@ export class AuthService {
    *
    * @type {BehaviorSubject<any>}
    */
-  private collegueConnecteSub:BehaviorSubject<Collegue> = new BehaviorSubject(COLLEGUE_ANONYME);
+  private collegueConnecteSub: BehaviorSubject<Collegue> = new BehaviorSubject(COLLEGUE_ANONYME);
 
-  constructor(private _http:HttpClient) {
+  constructor(private _http: HttpClient) {
   }
 
   /**
@@ -39,7 +39,7 @@ export class AuthService {
    *
    * @returns {Observable<Collegue>}
    */
-  get collegueConnecteObs():Observable<Collegue> {
+  get collegueConnecteObs(): Observable<Collegue> {
     return this.collegueConnecteSub.asObservable();
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
    *
    * @returns {Observable<Collegue>}
    */
-  getCollegue():Collegue {
+  getCollegue(): Collegue {
     return JSON.parse(localStorage.getItem("collegue"));
   }
 
@@ -61,13 +61,13 @@ export class AuthService {
    */
   verifierAuthentification(): Observable<Collegue> {
     return this.collegueConnecteSub.getValue().estAnonyme() ?
-            this._http.get<Collegue>(`${environment.baseUrl}${environment.apiAuthMe}`, {withCredentials: true})
-                  .pipe(
-                    map(colServeur => new Collegue(colServeur)),
-                    tap(col => this.collegueConnecteSub.next(col)),
-                    catchError(err => of(COLLEGUE_ANONYME))
-                  ):     of(this.collegueConnecteSub.getValue())
-              ;
+      this._http.get<Collegue>(`${environment.baseUrl}${environment.apiAuthMe}`, { withCredentials: true })
+        .pipe(
+          map(colServeur => new Collegue(colServeur)),
+          tap(col => this.collegueConnecteSub.next(col)),
+          catchError(err => of(COLLEGUE_ANONYME))
+        ) : of(this.collegueConnecteSub.getValue())
+      ;
   }
 
   /**
@@ -79,7 +79,7 @@ export class AuthService {
    * @param {string} mdp : mot de passe de l'utilisation
    * @returns {Observable<Collegue>}
    */
-  connecter(email:string, mdp:string):Observable<Collegue> {
+  connecter(email: string, mdp: string): Observable<Collegue> {
 
     const config = {
       headers: new HttpHeaders({
@@ -90,7 +90,7 @@ export class AuthService {
     return this._http.post(`${environment.baseUrl}${environment.apiLogin}`, new HttpParams().set('username', email).set('password', mdp), config)
       .pipe(
         map(colServeur => new Collegue(colServeur)),
-        tap(col => {this.collegueConnecteSub.next(col); localStorage.setItem("collegue", JSON.stringify(col));} )
+        tap(col => { this.collegueConnecteSub.next(col); localStorage.setItem("collegue", JSON.stringify(col)); })
       );
   }
 
@@ -109,7 +109,7 @@ export class AuthService {
       })
     };
 
-    return this._http.post<Collegue>(`${environment.baseUrl}${environment.apiLogout}`, null , config)
+    return this._http.post<Collegue>(`${environment.baseUrl}${environment.apiLogout}`, null, config)
       .pipe(
         tap(col => this.collegueConnecteSub.next(COLLEGUE_ANONYME))
       );
