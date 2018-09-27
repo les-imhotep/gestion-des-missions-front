@@ -1,0 +1,72 @@
+
+ <div class="container">
+ 
+ <header>
+    <!--  Bandeau avec le titre de l'application + le menu -->
+   <app-bandeau></app-bandeau>      
+</header> 
+
+
+<!--  En-tête -->
+<h3>Récapitulatif des primes</h3>
+<p>
+    Vous trouverez dans cette section le récapitulatif de vos rémunérations.
+</p>
+
+<!--  Tableau Excel à télécharger -->
+<div class ="row">
+        <div class="col-4">
+<div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="/assets/image/primes.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Primes</h5>
+          <p class="card-text">Téléchargez le récapitulatif de vos primes au format .xls</p>
+          <i class="fa fa-lg fa-download"></i>
+          <a href="/assets/tableur/TestPrimes.xls" style="align-content: center">Téléchargement</a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-2"></div>
+
+
+<div class="col-6">
+       <!-- Tableau des primes -->
+              
+        <div class="mt-4">
+          </div>
+        
+          <section class="tableaunotedefrais">
+        
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr class="table-success">
+                <th scope="col">Date de début</th>
+                <th scope="col">Date de fin</th>
+                <th scope="col">Nature</th>
+                <th scope="col">Prime</th>
+              </tr>
+            </thead>
+        
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        
+          <div class="erreur" *ngIf="errMsg">
+            {{errMsg}}
+          </div>
+       
+        </section>
+</div>
+
+</div>
+</div> 
+        

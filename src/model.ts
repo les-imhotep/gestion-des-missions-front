@@ -1,4 +1,5 @@
 import { Collegue } from "./app/auth/auth.domains";
+import { toDate } from "@angular/common/src/i18n/format_date";
 
 export class Absence {
     constructor(
@@ -19,6 +20,18 @@ export class NoteDeFrais {
         public frais: Number
 
     ) { }
+
+    static fromNoteDeFraisServeur(noteDeFraisServeur: any): NoteDeFrais {
+        const noteIhm = new NoteDeFrais(null, null, null, null, null, null, null);
+        noteIhm.dateDebut = noteDeFraisServeur.dateDebut;
+        noteIhm.dateFin = noteDeFraisServeur.dateFin;
+        noteIhm.frais = noteDeFraisServeur.frais;
+        noteIhm.natureMission = noteDeFraisServeur.natureMission;
+        noteIhm.transport = noteDeFraisServeur.transport;
+        noteIhm.villeArrivee = noteDeFraisServeur.villeArrivee;
+        noteIhm.villeDepart = noteDeFraisServeur.villeDepart;
+        return noteIhm;
+      }
 
 }
 
