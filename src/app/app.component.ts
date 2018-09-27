@@ -20,19 +20,31 @@ import {Collegue} from "./auth/auth.domains";
     </div>
     <router-outlet></router-outlet>
 
+
+    <div class="container">
+
     <!--  Bandeau avec le titre de l'application + le menu -->
     <header>
+    <p>  Vous êtes connecté en tant que {{collegue.roles}} </p>
     <app-bandeau></app-bandeau>  
     </header>
+
+    <body>
+
+    
 
     <!-- Router -->
     <div id="content">
         <router-outlet></router-outlet>
     </div>
+    </body>
 
     <!-- Pied de page -->
   <footer>
+  
   </footer>
+
+  </div>
         
   `,
   styles: []
@@ -40,10 +52,12 @@ import {Collegue} from "./auth/auth.domains";
 export class AppComponent implements OnInit {
 
   collegueConnecte:Observable<Collegue>;
+  collegue:Collegue; //objet qui va contenir le role. Le mieux serait d'utiliser un observable.
 
   constructor(private _authSrv:AuthService, private _router:Router) {
 
   }
+
 
   /**
    * Action déconnecter collègue.
@@ -62,6 +76,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     this.collegueConnecte = this._authSrv.collegueConnecteObs;
+    this.collegue = JSON.parse(localStorage.getItem("collegue")); //Le mieux serait d'utiliser un observable
   }
 
 }
