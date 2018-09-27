@@ -23,10 +23,14 @@ export class NoteDeFrais {
 }
 
 export class NatureMission {
-    constructor(public facturation: Facturation,
+    constructor(
+        public id: Number,
+        public facturation: Facturation,
         public prime: boolean,
         public tjm: Number,
-        public pourcentage: Number
+        public pourcentage: Number,
+        public name: String,
+        public datefin: Date
     ) { }
 
 }
@@ -58,6 +62,17 @@ export class Mission {
 
 }
 
+export class Formulaire {
+    constructor(
+        public name: String,
+        public facturation: Facturation,
+        public prime: boolean,
+        public tjm: Number,
+        public pourcentage, Number
+
+    ) { }
+}
+
 export enum Transport {
     AVION,
     COVOITURAGE,
@@ -79,7 +94,7 @@ export enum Role {
 }
 
 export enum Facturation {
-    FATUREE,
-    NON_FACTUREE
+    FACTUREE = "FACTUREE",
+    NON_FACTUREE = "NON_FACTUREE"
 
 }
