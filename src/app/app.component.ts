@@ -25,7 +25,7 @@ import {Collegue} from "./auth/auth.domains";
 
     <!--  Bandeau avec le titre de l'application + le menu -->
     <header>
-    <p>  Vous êtes connecté en tant que {{collegue.roles}} </p>
+    <p>  Vous êtes connecté(e) en tant que {{collegue.roles}} </p>
     <app-bandeau></app-bandeau>  
     </header>
 

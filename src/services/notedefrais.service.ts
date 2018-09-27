@@ -41,5 +41,10 @@ const URL_BACKEND= environment.baseUrl;
       );
   }
 
+  deleteLigneDeFrais(ligneDeFrais: NoteDeFrais) {
+    return this._http.post(URL_BACKEND + `/delete`, ligneDeFrais);
+}
+
+  
 
   }

@@ -7,6 +7,14 @@
     Vous trouverez dans cette section le récapitulatif de vos remboursements de frais de déplacements et de missions.
 </p>
 
+
+<!--  Traitement des erreurs -->
+<div class="erreur" *ngIf="errMsg">
+    {{errMsg}}
+  </div>
+
+
+
 <div class ="row">
 <div class="col-4">
 <!--  Récapitulatif de note de frais -->
@@ -29,17 +37,14 @@
 
 
 <div class="col-8">
-<!--  Tableau de la saisie de note de frais 
-<div class="mx-auto" style="width: 100%;"> -->
+
 
   <!--  Bouton d'ajout d'une note de frais -->
 <button type="button" class="btn btn-outline-success pull-right" (click)="ajouterNoteDeFrais()">Ajouter un frais</button>
 
-<div class="mt-4">
-  </div>
 
-  <section class="tableaunotedefrais">
 
+<!--  Tableau de la saisie de note de frais -->
   <table class="table table-sm table-bordered">
     <thead>
       <tr class="table-success">
@@ -58,10 +63,10 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-5">
-                <i type="button" class="fa fa-lg fa-pencil text-success" (click)="editerNoteDeFrais()" size="sm" mdbBtn>Modifier</i>
+                <i type="button" class="fa fa-lg fa-pencil text-success" (click)="basicModal.show() ; save(note)" size="sm" mdbBtn>Modifier</i>
               </div>
               <div class="col-5">
-                <i type="button" class="fa fa-lg fa-trash text-danger" (click)="supprimerNoteDeFrais()" size="sm" mdbBtn>Supprimer</i>
+                <i type="button" class="fa fa-lg fa-trash text-danger" (click)="delete(note)" size="sm" mdbBtn>Supprimer</i>
               </div>
             </div>
         </td>
@@ -69,11 +74,57 @@
     </tbody>
   </table>
 
-  <div class="erreur" *ngIf="errMsg">
-    {{errMsg}}
+ 
+
+
+<!--  Modale -->
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Modifier une ligne de frais</h4>
+        </div>
+        <div class="modal-body">
+  
+          <form name="myForm" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
+
+            <!-- Date -->
+            <div class="md-form">
+  
+              <input type="text" id="matriculeform" class="form-control mb-4" [(ngModel)]="selectedNatureMission.name" name="name" required
+                mdbInputDirective>
+              <label for="matriculeform"> Date</label>
+            </div>
+  
+            <!-- Nature -->
+            <div class="md-form">
+              <select class="browser">
+                <option value="" disabled selected>Nature</option>
+              </select>
+            </div>
+           
+            <!-- Montant -->
+            <div class="md-form">
+              <input type="text" id="photoform" class="form-control mb-4" [(ngModel)]="selectedNatureMission.tjm" name="tjm" mdbInputDirective>
+              <label for="photoform">Montant</label>
+            </div>
+          
+          </form>
+  
+        </div>
+        <div class="modal-footer">
+            <button type="button" mdbBtn  class="btn btn-outline-dark" aria-label="Close" (click)="addModal.hide()" mdbWavesEffect>Fermer</button>
+            <button type="button" mdbBtn  class="btn btn-outline-success" (click)="new();addModal.hide()" mdbWavesEffect>Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+  
   </div>
 
-</section>
+
 </div>
 </div>
 
