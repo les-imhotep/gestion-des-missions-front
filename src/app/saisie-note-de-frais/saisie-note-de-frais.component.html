@@ -38,7 +38,7 @@
 <div class="mx-auto" style="width: 100%;"> -->
 
   <!--  Bouton d'ajout d'une note de frais -->
-<button type="button" class="btn btn-outline-success pull-right" (click)="ajouterNoteDeFrais()">Ajouter une note de frais</button>
+<button type="button" class="btn btn-outline-success pull-right" (click)="ajouterNoteDeFrais()">Ajouter un frais</button>
 
 <div class="mt-4">
   </div>
@@ -62,14 +62,12 @@
         <td>
             <div class="row">
                 <div class="col-1"></div>
-              <div class="col-4">
-                <i type="button" class="fa fa-lg fa-pencil text-success" (click)="editerNoteDeFrais()"></i>
+                <div class="col-5">
+                <i type="button" class="fa fa-lg fa-pencil text-success" (click)="editerNoteDeFrais()" size="sm" mdbBtn>Modifier</i>
               </div>
-              <div class="col-1"></div>
-              <div class="col-4">
-                <i type="button" class="fa fa-lg fa-trash text-danger" (click)="supprimerNoteDeFrais()"></i>
+              <div class="col-5">
+                <i type="button" class="fa fa-lg fa-trash text-danger" (click)="supprimerNoteDeFrais()" size="sm" mdbBtn>Supprimer</i>
               </div>
-              <div class="col-1"></div> 
             </div>
         </td>
       </tr>

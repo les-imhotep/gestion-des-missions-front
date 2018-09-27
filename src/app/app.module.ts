@@ -31,7 +31,7 @@ const routes: Routes = [
   { path:'gestion', component: GestionMissionComponent},
   { path:'planning', component: PlanningComponent},
   { path:'validation', component: ValidationMissionComponent}, // Onglet disponible uniquement pour les managers
-  { path:'naturemission', component: ListerNatureMissionComponent}, // Onglet disponible uniquement pour les administrateurs
+  { path:'naturemissions', component: ListerNatureMissionComponent}, // Onglet disponible uniquement pour les administrateurs
   { path: '', redirectTo: '/accueil', pathMatch: 'full'},
   { path: '**',  component: PageNonTrouveeComponent } // En cas de page inaccessible
 
