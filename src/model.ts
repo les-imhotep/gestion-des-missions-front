@@ -1,4 +1,5 @@
 import { Collegue } from "./app/auth/auth.domains";
+import { toDate } from "@angular/common/src/i18n/format_date";
 
 export class Absence {
     constructor(
@@ -22,6 +23,18 @@ export class NoteDeFrais {
 
     ) { }
 
+    static fromNoteDeFraisServeur(noteDeFraisServeur: any): NoteDeFrais {
+        const noteIhm = new NoteDeFrais(null, null, null, null, null, null, null, null);
+        noteIhm.dateDebut = noteDeFraisServeur.dateDebut;
+        noteIhm.dateFin = noteDeFraisServeur.dateFin;
+        noteIhm.frais = noteDeFraisServeur.frais;
+        noteIhm.natureMission = noteDeFraisServeur.natureMission;
+        noteIhm.transport = noteDeFraisServeur.transport;
+        noteIhm.villeArrivee = noteDeFraisServeur.villeArrivee;
+        noteIhm.villeDepart = noteDeFraisServeur.villeDepart;
+        return noteIhm;
+    }
+
 }
 
 export class NatureMission {
@@ -30,7 +43,9 @@ export class NatureMission {
         public facturation: Facturation,
         public prime: boolean,
         public tjm: Number,
-        public pourcentage: Number
+        public pourcentage: Number,
+        public name: String,
+        public datefin: Date
     ) { }
 
 }
@@ -64,6 +79,17 @@ export class Mission {
 
 }
 
+export class Formulaire {
+    constructor(
+        public name: String,
+        public facturation: Facturation,
+        public prime: boolean,
+        public tjm: Number,
+        public pourcentage, Number
+
+    ) { }
+}
+
 export enum Transport {
     AVION,
     COVOITURAGE,
@@ -85,7 +111,7 @@ export enum Role {
 }
 
 export enum Facturation {
-    FATUREE,
-    NON_FACTUREE
+    FACTUREE = "FACTUREE",
+    NON_FACTUREE = "NON_FACTUREE"
 
 }

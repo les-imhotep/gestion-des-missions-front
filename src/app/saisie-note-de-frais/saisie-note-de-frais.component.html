@@ -1,0 +1,90 @@
+<div class="container">
+
+<header>
+  <!--  Bandeau avec le titre de l'application + le menu -->
+ <app-bandeau></app-bandeau>      
+</header> 
+
+
+<!--  En-tête -->
+<h3>Saisie des notes de frais</h3>
+<p>
+    Vous trouverez dans cette section le récapitulatif de vos remboursements de frais de déplacements et de missions.
+</p>
+
+<div class ="row">
+<div class="col-4">
+<!--  Récapitulatif de note de frais -->
+<div class="card" style="width: 20rem;">
+    <img class="card-img-top" src="/assets/image/notedefrais.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Vue d'ensemble de vos notes de frais</h5>
+    </div>
+    <ul class="list-group list-group-flush" *ngFor="let note of noteDeFraisTab">
+      <li class="list-group-item">Date de début : {{note.dateDebut}}</li>
+      <li class="list-group-item">Date de fin : {{note.dateFin}}</li>
+      <li class="list-group-item">Nature : {{note.natureMission.name}} </li>
+      <li class="list-group-item">Estimation primes : {{note.frais}} €</li>
+      <li class="list-group-item">Ville de départ : {{note.villeDepart}}</li>
+      <li class="list-group-item">Ville d'arrivée : {{note.villeArrivee}}</li>
+    </ul>
+  </div>
+</div>
+
+<br>
+
+<div class="col-8">
+<!--  Tableau de la saisie de note de frais 
+<div class="mx-auto" style="width: 100%;"> -->
+
+  <!--  Bouton d'ajout d'une note de frais -->
+<button type="button" class="btn btn-outline-success pull-right" (click)="ajouterNoteDeFrais()">Ajouter une note de frais</button>
+
+<div class="mt-4">
+  </div>
+
+  <section class="tableaunotedefrais">
+
+  <table class="table table-sm table-bordered">
+    <thead>
+      <tr class="table-success">
+        <th scope="col">Date</th>
+        <th scope="col">Nature</th>
+        <th scope="col">Montant</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let note of noteDeFraisTab">
+        <td>{{note.dateDebut}}</td>
+        <td>{{note.natureMission.name | uppercase}}</td>
+        <td>{{note.frais}} €</td>
+        <td>
+            <div class="row">
+                <div class="col-1"></div>
+              <div class="col-4">
+                <i type="button" class="fa fa-lg fa-pencil text-success" (click)="editerNoteDeFrais()"></i>
+              </div>
+              <div class="col-1"></div>
+              <div class="col-4">
+                <i type="button" class="fa fa-lg fa-trash text-danger" (click)="supprimerNoteDeFrais()"></i>
+              </div>
+              <div class="col-1"></div> 
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="erreur" *ngIf="errMsg">
+    {{errMsg}}
+  </div>
+
+</section>
+</div>
+</div>
+
+
+
+
+</div>
