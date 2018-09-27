@@ -30,7 +30,7 @@ const URL_BACKEND= environment.baseUrl;
   listerNoteDeFrais(): Observable<NoteDeFrais[]> {
 
     return this._http
-      .get(URL_BACKEND)
+      .get(URL_BACKEND + "notedefrais")
 
       .pipe(
       map((data: any[]) =>

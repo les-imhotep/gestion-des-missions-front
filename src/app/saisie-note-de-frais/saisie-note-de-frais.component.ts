@@ -10,15 +10,31 @@ import { NoteDeFraisService } from '../../services/notedefrais.service';
 export class SaisieNoteDeFraisComponent implements OnInit {
 
   // Liste des notes de frais
-  @Input() noteDeFraisTab:NoteDeFrais[]
+noteDeFraisTab:NoteDeFrais[]
+
+  err: string;
 
   constructor(private _notedefraissrv:NoteDeFraisService) {
-
-
    }
  
 
   ngOnInit() {
+
+
+    this._notedefraissrv.listerNoteDeFrais()
+    .subscribe(
+      tableauNotes => this.noteDeFraisTab = tableauNotes,
+      errServeur => {
+        if (errServeur.code && errServeur.message) {
+          this.err = errServeur.message;
+        } else {
+          this.err = 'Erreur technique côté serveur'; 
+      }
+    }
+    );
   }
 
-}
+
+  }
+
+
