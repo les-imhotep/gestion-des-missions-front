@@ -91,10 +91,10 @@ export class Formulaire {
 }
 
 export enum Transport {
-    AVION,
-    COVOITURAGE,
-    TRAIN,
-    VOITURE_SERVICE
+    AVION = "AVION",
+    COVOITURAGE = "COVOITURAGE",
+    TRAIN = "TRAIN",
+    VOITURE_SERVICE = "VOITURE_SERVICE"
 }
 
 export enum Statut {

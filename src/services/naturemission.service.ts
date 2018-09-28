@@ -36,7 +36,6 @@ export class NatureMissionService {
     }
 
     updateNatureMission(natureMissionAModifier: NatureMission) {
-        let body = { natureMissionAModifier }
         return this._http.post(URL_BACKEND + `/update`, natureMissionAModifier);
     }
 }
