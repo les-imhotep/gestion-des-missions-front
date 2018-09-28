@@ -30,7 +30,6 @@ export class ListerNatureMissionComponent implements OnInit {
   }];
   boutonPrime: boolean = false;
   selectedNatureMission: NatureMission = new NatureMission(null, null, null, null, null, null, null);
-  formulaire: Formulaire;
   constructor(private _natureMissionSrv: NatureMissionService) { }
 
   ngOnInit() {

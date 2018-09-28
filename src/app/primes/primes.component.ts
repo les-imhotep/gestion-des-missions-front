@@ -10,6 +10,7 @@ export class PrimesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

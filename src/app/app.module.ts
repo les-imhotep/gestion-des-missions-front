@@ -21,23 +21,23 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { SaisieNoteDeFraisComponent } from './saisie-note-de-frais/saisie-note-de-frais.component';
 import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nature-mission.component';
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
+import { ListerNoteDeFraisComponent } from './lister-note-de-frais/lister-note-de-frais.component';
 
 
 const routes: Routes = [
 
-  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
-  { path:'auth', component: AuthComponent},
-  { path:'accueil', component: AccueilComponent},
-  { path:'primes', component: PrimesComponent},
-  { path:'notedefrais', component: SaisieNoteDeFraisComponent},
-  { path:'gestion', component: GestionMissionComponent}, // A REMPLACER PAR MISSIONS
-  { path:'planning', component: PlanningComponent},
-  { path:'validation', component: ValidationMissionComponent}, // Onglet disponible uniquement pour les managers
-  { path:'naturemissions', component: ListerNatureMissionComponent}, // Onglet disponible uniquement pour les administrateurs
-  { path: '', redirectTo: '/accueil', pathMatch: 'full'},
-  { path: '**',  component: PageNonTrouveeComponent }, // En cas de page inaccessible
+  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
+  { path: 'auth', component: AuthComponent },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'primes', component: PrimesComponent },
+  { path: 'notedefrais', component: SaisieNoteDeFraisComponent },
+  { path: 'gestion', component: GestionMissionComponent }, // A REMPLACER PAR MISSIONS
+  { path: 'planning', component: PlanningComponent },
+  { path: 'validation', component: ValidationMissionComponent }, // Onglet disponible uniquement pour les managers
+  { path: 'naturemissions', component: ListerNatureMissionComponent }, // Onglet disponible uniquement pour les administrateurs
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'missions', component: ListeMissionComponent },
-
+  { path: 'notesdefrais', component: ListerNoteDeFraisComponent },
 ];
 
 @NgModule({
@@ -56,7 +56,8 @@ const routes: Routes = [
     AccueilComponent,
     SaisieNoteDeFraisComponent,
     ListerNatureMissionComponent,
-    ListeMissionComponent
+    ListeMissionComponent,
+    ListerNoteDeFraisComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+<div class="mt-4 ">
+
+  <table class="table table-hover">
+    <thead class="blue white-text ">
+      <tr>
+        <th scope="col">Date de début</th>
+        <th scope="col">Date de fin</th>
+        <th scope="col">Nature de Mission</th>
+        <th scope="col">Ville de départ</th>
+        <th scope="col">Ville d'arrivée</th>
+        <th scope="col">Transport</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Frais</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let noteDeFrais of notesDeFrais">
+        <td>{{noteDeFrais.dateDebut}}</td>
+        <td>{{noteDeFrais.dateFin}}</td>
+        <td>{{noteDeFrais.natureMission.name}}</td>
+        <td>{{noteDeFrais.villeDepart}}</td>
+        <td>{{noteDeFrais.villeArrivee}}</td>
+        <td>{{noteDeFrais.transport}}</td>
+        <td>{{noteDeFrais.statut}}</td>
+        <td>{{noteDeFrais.frais}}</td>
+        <td *ngIf="comparerDate(noteDeFrais.dateFin)==true">bouton</td>
+        <td *ngIf="comparerDate(noteDeFrais.dateFin)==false">pas bouton</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
