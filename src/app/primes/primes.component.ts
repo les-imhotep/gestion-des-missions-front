@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Prime } from '../../model';
+import { PrimeService } from '../../services/prime.service';
 
 @Component({
   selector: 'app-primes',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrimesComponent implements OnInit {
 
-  constructor() { }
+ // Message d'erreur
+ err: string;
+
+  // Liste des primes
+  primesTab:Prime[];
+  prime:Prime;
+
+
+  constructor(private _primessrv:PrimeService) { }
 
   ngOnInit() {
   }

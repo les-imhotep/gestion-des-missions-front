@@ -21,7 +21,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { SaisieNoteDeFraisComponent } from './saisie-note-de-frais/saisie-note-de-frais.component';
 import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nature-mission.component';
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 const routes: Routes = [
 
@@ -63,7 +63,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    MatDatepickerModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

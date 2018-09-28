@@ -25,7 +25,9 @@ import {Collegue} from "./auth/auth.domains";
 
     <!--  Bandeau avec le titre de l'application + le menu -->
     <header>
-    <p>  Vous êtes connecté(e) en tant que {{collegue.roles}} </p>
+    <ng-container *ngIf="collegue.roles == 'ROLE_ADMINISTRATEUR,ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"administrateur".</ng-container>
+    <ng-container *ngIf="collegue.roles == 'ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"utilisateur".</ng-container>
+    <ng-container *ngIf="collegue.roles == 'ROLE_MANAGER'" > Vous êtes connecté(e) en tant que "manager".</ng-container>
     <app-bandeau></app-bandeau>  
     </header>
 

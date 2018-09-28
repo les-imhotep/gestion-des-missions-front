@@ -35,7 +35,7 @@
         
           <section class="tableaunotedefrais">
         
-          <table class="table table-sm table-bordered">
+          <table class="table table-sm table-bordered table-hover">
             <thead>
               <tr class="table-success">
                 <th scope="col">Date de début</th>
@@ -46,11 +46,11 @@
             </thead>
         
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let prime of PrimesTab">
+                  <td>{{prime.dateDebut}}</td>
+                  <td>{{prime.dateFin}}</td>
+                  <td>{{prime.nature}}</td>
+                  <td>{{prime.montant}</td>
               </tr>
             </tbody>
           </table>

@@ -10,7 +10,14 @@ export class Absence {
     ) { }
 }
 
-export class NoteDeFrais {
+export class NoteDeFrais{
+constructor(
+    public id:Number,
+   public lignesDeFrais:LigneDeFrais[]
+    ){}
+}
+
+export class LigneDeFrais {
     constructor(
         public id: Number,
         public dateDebut: Date,
@@ -23,8 +30,8 @@ export class NoteDeFrais {
 
     ) { }
 
-    static fromNoteDeFraisServeur(noteDeFraisServeur: any): NoteDeFrais {
-        const noteIhm = new NoteDeFrais(null, null, null, null, null, null, null, null);
+    static fromLigneDeFraisServeur(noteDeFraisServeur: any): LigneDeFrais {
+        const noteIhm = new LigneDeFrais(null, null, null, null, null, null, null, null);
         noteIhm.dateDebut = noteDeFraisServeur.dateDebut;
         noteIhm.dateFin = noteDeFraisServeur.dateFin;
         noteIhm.frais = noteDeFraisServeur.frais;

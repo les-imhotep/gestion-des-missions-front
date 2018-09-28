@@ -13,10 +13,16 @@ const URL_BACKEND = environment.baseUrl + "naturemission";
     providedIn: "root"
 })
 export class NatureMissionService {
+
+    // Message d'erreur
     err: string;
+
+    // Tableau de nature de missions
     natureMissions: Array<NatureMission>;
+
     constructor(private _http: HttpClient) { }
 
+    // Lister les natures de mission
     findAll(): Observable<NatureMission[]> {
 
         return this._http.get(URL_BACKEND).pipe(
@@ -26,15 +32,18 @@ export class NatureMissionService {
             ));
     }
 
+    // Ajouter une nature de mission
     addNatureMission(formulaireAdd: Formulaire) {
         return this._http.post(URL_BACKEND + `/new`, formulaireAdd);
 
     }
 
+    // Supprimer une nature de mission
     deleteNatureMission(natureMission: NatureMission) {
         return this._http.post(URL_BACKEND + `/delete`, natureMission);
     }
 
+    // Mettre à jour une nature de mission
     updateNatureMission(natureMissionAModifier: NatureMission) {
         let body = { natureMissionAModifier }
         return this._http.post(URL_BACKEND + `/update`, natureMissionAModifier);
