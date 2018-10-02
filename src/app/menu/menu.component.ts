@@ -34,16 +34,6 @@ export class MenuComponent implements OnInit {
 
 // On utilise un observable pour récupérer le rôle du collègue qui se connecte
 
-// Est connecté, peu importe son rôle
-isConnecte():boolean {
-  let result = false;
-  this.collegue.subscribe(c => {
-    if (c && c.roles.length>0){
-          result= true;
-        }
-    });
-  return result;
-}
 
 // Est connecté en tant qu'administrateur
   isAdmin():boolean {

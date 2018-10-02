@@ -32,5 +32,23 @@ export class MissionService {
 
     }
 
+    findPrime(): Observable<Mission[]> {
+
+        return this._http.get(URL_BACKEND).pipe(
+            map((data: any[]) =>
+                data.map(mission =>
+                    new Mission(
+                        mission.id,
+                        mission.dateDebut,
+                        mission.dateFin,
+                        mission.natureMission,
+                        mission.villeDepart,
+                        mission.villeArrivee,
+                        mission.transport,
+                        mission.statut,
+                        mission.prime),
+            )));
+    }
+
 
 }

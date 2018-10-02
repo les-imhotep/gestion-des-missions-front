@@ -22,6 +22,7 @@ import { SaisieNoteDeFraisComponent } from './saisie-note-de-frais/saisie-note-d
 import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nature-mission.component';
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ChartComponent } from './chart/chart.component';
 
 const routes: Routes = [
 
@@ -56,7 +57,8 @@ const routes: Routes = [
     AccueilComponent,
     SaisieNoteDeFraisComponent,
     ListerNatureMissionComponent,
-    ListeMissionComponent
+    ListeMissionComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,

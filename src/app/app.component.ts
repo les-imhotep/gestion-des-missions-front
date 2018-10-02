@@ -21,38 +21,116 @@ import {Collegue} from "./auth/auth.domains";
     <router-outlet></router-outlet>
 
 
-    <div class="container">
+  
 
-
-    <header> 
 
     
-    <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_ADMINISTRATEUR,ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"administrateur".</ng-container>
-    <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"utilisateur".</ng-container>
-    <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_MANAGER'" > Vous êtes connecté(e) en tant que "manager".</ng-container>
+ <header> 
 
-    <section *ngIf="isConnecte()">
-    <app-bandeau></app-bandeau>
-    </section>
+ <!-- Début container-->
+ <div class="container">
 
-    </header> 
+ <section *ngIf="isConnecte()">
+ <div class="row">
 
-    <body>
 
-    
+
+ 
+ <div class="col-9">
+ <app-menu></app-menu>
+</div>
+
+ <!-- <app-bandeau></app-bandeau> -->
+ 
+
+
+ <div class="col-3">
+
+ <!-- Carte pour connaitre l'authentification du collègue connecté -->
+ <mdb-card>
+   <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+   <!-- Card img -->
+   <mdb-card-img src="/assets/image/titre3.JPG" alt="Card image cap"></mdb-card-img>
+   <a> <div class="mask"></div> </a>
+   
+   </div>
+
+
+   <!--Card content-->
+   <mdb-card-body>
+ 
+     <!--Text-->
+     <mdb-card-text>
+     
+     <h6>
+
+     <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_ADMINISTRATEUR,ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"administrateur".</ng-container>
+     <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"utilisateur".</ng-container>
+     <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_MANAGER'" > Vous êtes connecté(e) en tant que "manager".</ng-container>
+
+     </h6>
+
+     </mdb-card-text>
+
+     <a  class="btn-sm btn-danger" (click)="seDeconnecter()">Se déconnecter</a> 
+
+   </mdb-card-body>
+ </mdb-card>
+
+ </div>
+ 
+
+
+ </div>
+
+
+
+ 
+
+ </section>
+
+<!-- Fin container-->
+</div>
+
+ </header> 
+
+
+
+
+
+
+ <!-- Body -->
+<body>
+
+
+
+<jqxChart 
+    [width]="getWidth()" [height]="500"
+    [title]="'Economic comparison'"
+    [description]="'GDP and Debt in 2010'"
+    [showLegend]="true" [enableAnimations]="true" [padding]="padding"
+    [titlePadding]="titlePadding" [source]="dataAdapter" [xAxis]="xAxis"
+    [columnSeriesOverlap]="false" [seriesGroups]="seriesGroups" [colorScheme]="'scheme01'">
+</jqxChart>
 
     <!-- Router -->
     <div id="content">
         <router-outlet></router-outlet>
     </div>
-    </body>
+
+
+
+
+</body>
+
+
+
 
     <!-- Pied de page -->
-  <footer>
+<footer>
   
-  </footer>
+</footer>
 
-  </div>
         
   `,
   styles: []
@@ -88,9 +166,10 @@ export class AppComponent implements OnInit {
 
    // Est connecté, peu importe son rôle
   isConnecte():boolean {
+    
     let result = false;
     this.collegueConnecte.subscribe(c => {
-      if (c && c.roles.length>0){
+      if (c && c.roles && c.roles.length>0){
             result= true;
           }
       });

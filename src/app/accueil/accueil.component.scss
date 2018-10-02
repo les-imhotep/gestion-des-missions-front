@@ -27,14 +27,22 @@
    }     
 
    // Mise en forme de l'image d'accueil
-   #fond {
-    background:url("/assets/image/imageaccueil - Copie.jpg") no-repeat center;
+   /*div {
+    background:url("/assets/image/imageaccueil - Copie.jpg") center center no-repeat;
     opacity: 0.75;
-    width:56.3%;
-    height:80%;
     z-index: 1;
     position: absolute;
-}
+    width: 100%;
+    height: 100%;
+    } */
+
+    #fond {
+    background-position : center;
+    opacity: 0.85;
+    width: 100%;
+    height: 100%;
+    padding : 20px 20px 0 0px;
+    }
 
     // Titre de type h2 dans le header
     #header h2 {

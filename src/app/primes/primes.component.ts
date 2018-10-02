@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Prime } from '../../model';
-import { PrimeService } from '../../services/prime.service';
+import { MissionService } from '../../services/mission.service';
+import { Mission } from '../../model';
 
 @Component({
   selector: 'app-primes',
@@ -13,13 +13,25 @@ export class PrimesComponent implements OnInit {
  err: string;
 
   // Liste des primes
-  primesTab:Prime[];
-  prime:Prime;
+  missionsTab:Mission[];
+  mission:Mission;
 
 
-  constructor(private _primessrv:PrimeService) { }
+  constructor(private _MissionServ:MissionService) { }
 
   ngOnInit() {
+
+    this._MissionServ.findPrime().subscribe(
+      tabMissions => (this.missionsTab = tabMissions),
+
+      errServeur => {
+        if (errServeur.code && errServeur.message) {
+          this.err = errServeur.message;
+        } else {
+          this.err = 'Erreur technique côté serveur';
+        }
+      }
+    )
   }
 
-}
+} 
