@@ -27,12 +27,14 @@ import {Collegue} from "./auth/auth.domains";
     <header> 
 
     
-    <ng-container *ngIf="collegue.roles == 'ROLE_ADMINISTRATEUR,ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"administrateur".</ng-container>
-    <ng-container *ngIf="collegue.roles == 'ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"utilisateur".</ng-container>
-    <ng-container *ngIf="collegue.roles == 'ROLE_MANAGER'" > Vous êtes connecté(e) en tant que "manager".</ng-container>
+    <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_ADMINISTRATEUR,ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"administrateur".</ng-container>
+    <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"utilisateur".</ng-container>
+    <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_MANAGER'" > Vous êtes connecté(e) en tant que "manager".</ng-container>
 
-    <app-bandeau></app-bandeau>  
-    
+    <section *ngIf="isConnecte()">
+    <app-bandeau></app-bandeau>
+    </section>
+
     </header> 
 
     <body>
@@ -58,7 +60,6 @@ import {Collegue} from "./auth/auth.domains";
 export class AppComponent implements OnInit {
 
   collegueConnecte:Observable<Collegue>;
-  collegue:Collegue = new Collegue(null); //objet qui va contenir le role. Le mieux serait d'utiliser un observable.
 
   constructor(private _authSrv:AuthService, private _router:Router) {
 
@@ -82,7 +83,18 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     this.collegueConnecte = this._authSrv.collegueConnecteObs;
-    this.collegue = JSON.parse(localStorage.getItem("collegue")); //Le mieux serait d'utiliser un observable
+   }
+
+
+   // Est connecté, peu importe son rôle
+  isConnecte():boolean {
+    let result = false;
+    this.collegueConnecte.subscribe(c => {
+      if (c && c.roles.length>0){
+            result= true;
+          }
+      });
+    return result;
   }
 
 }
