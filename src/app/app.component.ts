@@ -23,13 +23,17 @@ import {Collegue} from "./auth/auth.domains";
 
     <div class="container">
 
-    <!--  Bandeau avec le titre de l'application + le menu -->
-    <header>
+
+    <header> 
+
+    
     <ng-container *ngIf="collegue.roles == 'ROLE_ADMINISTRATEUR,ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"administrateur".</ng-container>
     <ng-container *ngIf="collegue.roles == 'ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"utilisateur".</ng-container>
     <ng-container *ngIf="collegue.roles == 'ROLE_MANAGER'" > Vous êtes connecté(e) en tant que "manager".</ng-container>
+
     <app-bandeau></app-bandeau>  
-    </header>
+    
+    </header> 
 
     <body>
 
@@ -54,7 +58,7 @@ import {Collegue} from "./auth/auth.domains";
 export class AppComponent implements OnInit {
 
   collegueConnecte:Observable<Collegue>;
-  collegue:Collegue; //objet qui va contenir le role. Le mieux serait d'utiliser un observable.
+  collegue:Collegue = new Collegue(null); //objet qui va contenir le role. Le mieux serait d'utiliser un observable.
 
   constructor(private _authSrv:AuthService, private _router:Router) {
 

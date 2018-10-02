@@ -29,7 +29,7 @@ const routes: Routes = [
   { path:'auth', component: AuthComponent},
   { path:'accueil', component: AccueilComponent},
   { path:'primes', component: PrimesComponent},
-  { path:'notedefrais', component: SaisieNoteDeFraisComponent},
+  { path:'notesdefrais', component: SaisieNoteDeFraisComponent},
   { path:'gestion', component: GestionMissionComponent}, // A REMPLACER PAR MISSIONS
   { path:'planning', component: PlanningComponent},
   { path:'validation', component: ValidationMissionComponent}, // Onglet disponible uniquement pour les managers
