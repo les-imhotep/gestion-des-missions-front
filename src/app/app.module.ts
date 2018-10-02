@@ -23,6 +23,8 @@ import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nat
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ChartComponent } from './chart/chart.component';
+import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
+ 
 
 const routes: Routes = [
 
@@ -58,7 +60,8 @@ const routes: Routes = [
     SaisieNoteDeFraisComponent,
     ListerNatureMissionComponent,
     ListeMissionComponent,
-    ChartComponent
+    ChartComponent,
+    jqxChartComponent
   ],
   imports: [
     BrowserModule,
