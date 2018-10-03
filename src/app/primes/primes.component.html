@@ -26,9 +26,9 @@
 
     <div class="col-2"></div>
 
-
+ 
 <div class="col-6">
-       <!-- Tableau des primes -->
+      <!--  Tableau des primes -->
               
         <div class="mt-4">
           </div>
@@ -46,11 +46,11 @@
             </thead>
         
             <tbody>
-              <tr *ngFor="let prime of PrimesTab">
+              <tr *ngFor="let prime of missionsTab">
                   <td>{{prime.dateDebut}}</td>
                   <td>{{prime.dateFin}}</td>
-                  <td>{{prime.nature}}</td>
-                  <td>{{prime.montant}</td>
+                  <td>{{prime.natureMission}}</td>
+                  <td>{{prime.prime}</td>
               </tr>
             </tbody>
           </table>
@@ -60,12 +60,10 @@
           </div>
        
         </section>
-</div>
+</div>  
+</div> 
 
-</div>
 
-<!-- Graphique -->
-<app-chart></app-chart> 
 
 
 </div> 

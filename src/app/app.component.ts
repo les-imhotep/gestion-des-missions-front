@@ -21,10 +21,8 @@ import {Collegue} from "./auth/auth.domains";
     <router-outlet></router-outlet>
 
 
-  
 
-
-    
+<!-- Début header -->  
  <header> 
 
  <!-- Début container-->
@@ -60,6 +58,7 @@ import {Collegue} from "./auth/auth.domains";
    <mdb-card-body>
  
      <!--Text-->
+     <div class="text-center"> 
      <mdb-card-text>
      
      <h6>
@@ -73,6 +72,7 @@ import {Collegue} from "./auth/auth.domains";
      </mdb-card-text>
 
      <a  class="btn-sm btn-danger" (click)="seDeconnecter()">Se déconnecter</a> 
+     </div>
 
    </mdb-card-body>
  </mdb-card>
@@ -80,12 +80,8 @@ import {Collegue} from "./auth/auth.domains";
  </div>
  
 
-
  </div>
 
-
-
- 
 
  </section>
 
@@ -97,38 +93,18 @@ import {Collegue} from "./auth/auth.domains";
 
 
 
-
-
  <!-- Body -->
 <body>
-
-
-
-<jqxChart 
-    [width]="getWidth()" [height]="500"
-    [title]="'Economic comparison'"
-    [description]="'GDP and Debt in 2010'"
-    [showLegend]="true" [enableAnimations]="true" [padding]="padding"
-    [titlePadding]="titlePadding" [source]="dataAdapter" [xAxis]="xAxis"
-    [columnSeriesOverlap]="false" [seriesGroups]="seriesGroups" [colorScheme]="'scheme01'">
-</jqxChart>
-
     <!-- Router -->
     <div id="content">
         <router-outlet></router-outlet>
     </div>
-
-
-
-
 </body>
-
 
 
 
     <!-- Pied de page -->
 <footer>
-  
 </footer>
 
         
