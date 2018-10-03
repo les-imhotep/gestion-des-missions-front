@@ -22,7 +22,6 @@ import { SaisieNoteDeFraisComponent } from './saisie-note-de-frais/saisie-note-d
 import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nature-mission.component';
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
 
-
 const routes: Routes = [
 
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté

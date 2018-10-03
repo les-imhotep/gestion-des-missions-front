@@ -11,21 +11,184 @@
         <th scope="col">Ville d'arrivée</th>
         <th scope="col">Transport</th>
         <th scope="col">Statut</th>
-        <th scope="col">Prime</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let mission of missions">
-        <td>{{mission.dateDebut}}</td>
-        <td>{{mission.dateFin}}</td>
-        <td>{{mission.natureMission}}</td>
+        <td>{{mission.dateDebutAffiche}}</td>
+        <td>{{mission.dateFinAffiche}}</td>
+        <td>{{mission.natureMission.name}}</td>
         <td>{{mission.villeDepart}}</td>
         <td>{{mission.villeArrivee}}</td>
         <td>{{mission.transport}}</td>
         <td>{{mission.statut}}</td>
-        <td>{{mission.prime}}</td>
-        <td></td>
+
+
+        <button type="button" (click)="basicModal.show() ; save(mission)" class="btn btn-outline-danger" size="sm"
+          mdbBtn>Modifier</button>
+        <button type="button" (click)="delete(mission)" class="btn btn-outline-danger" size="sm" mdbBtn>Supprimer</button>
+
       </tr>
     </tbody>
   </table>
+
+  <div class="row">
+
+    <button type="button" class="btn btn-info" (click)="initCreate();addModal.show()">Ajouter une Mission</button>
+
+  </div>
+
+  <!--################################# ******MODAL DE MODIFICATION****** #################################-->
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Ajouter Mission</h4>
+        </div>
+        <div class="modal-body">
+
+          <form name="myForm" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
+            <!-- Date de debut-->
+            <div class="md-form">
+
+              <input type="date" id="dateDebut" class="form-control mb-4" [(ngModel)]="selectedMission.dateDebut" name="dateDebut"
+                required mdbInputDirective>
+
+            </div>
+
+            <!-- Date de fin-->
+            <div class="md-form">
+
+              <input type="date" id="dateFin" class="form-control mb-4" [(ngModel)]="selectedMission.dateFin" name="dateFin"
+                required mdbInputDirective>
+
+            </div>
+
+            <!--Nature de Mission-->
+            <div class="md-form">
+              <select class="browser" [(ngModel)]="selectedMission.natureMission.id" name="natureMission">
+                <option value="" disabled selected>Nature Mission</option>
+                <option [value]="natureMission.id" *ngFor="let natureMission of natureMissions">{{natureMission.name}}</option>
+              </select>
+
+
+            </div>
+
+            <!--Ville de départ-->
+            <div class="md-form">
+
+              <input type="text" id="villeDepart" class="form-control mb-4" [(ngModel)]="selectedMission.villeDepart"
+                name="villeDepart" required mdbInputDirective>
+              <label for="villeDepart"> Ville de départ</label>
+            </div>
+
+            <!--Ville d'arrivée-->
+            <div class="md-form">
+
+              <input type="text" id="villeArrivee" class="form-control mb-4" [(ngModel)]="selectedMission.villeArrivee"
+                name="villeArrivee" required mdbInputDirective>
+              <label for="villeArrivee">Ville d'arrivée</label>
+            </div>
+            <!-- Transport -->
+            <div class="md-form">
+
+              <select class="browser" [(ngModel)]="selectedMission.transport" name="transport">
+                <option value="" disabled selected>TRANSPORT</option>
+                <option [value]="select.value" *ngFor="let select of tabSelectTransport">{{select.label}}</option>
+              </select>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()"
+                mdbWavesEffect>Annuler</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="new();basicModal.hide()"
+                mdbWavesEffect>Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ################################# ******MODAL D'AJOUT****** #################################-->
+  <div mdbModal #addModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="addModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Ajouter Mission</h4>
+        </div>
+        <div class="modal-body">
+
+          <form name="myForm" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
+            <!-- Date de debut-->
+            <div class="md-form">
+
+              <input type="date" id="dateDebut" class="form-control mb-4" [(ngModel)]="selectedMission.dateDebut" name="dateDebut"
+                required mdbInputDirective>
+
+            </div>
+
+            <!-- Date de fin-->
+            <div class="md-form">
+
+              <input type="date" id="dateFin" class="form-control mb-4" [(ngModel)]="selectedMission.dateFin" name="dateFin"
+                required mdbInputDirective>
+
+            </div>
+
+            <!--Nature de Mission-->
+            <div class="md-form">
+              <select class="browser" [(ngModel)]="selectedMission.natureMission.id" name="natureMission">
+                <option value="" disabled selected>Nature Mission</option>
+                <option [value]="natureMission.id" *ngFor="let natureMission of natureMissions">{{natureMission.name}}</option>
+              </select>
+
+
+            </div>
+
+            <!--Ville de départ-->
+            <div class="md-form">
+
+              <input type="text" id="villeDepart" class="form-control mb-4" [(ngModel)]="selectedMission.villeDepart"
+                name="villeDepart" required mdbInputDirective>
+              <label for="villeDepart"> Ville de départ</label>
+            </div>
+
+            <!--Ville d'arrivée-->
+            <div class="md-form">
+
+              <input type="text" id="villeArrivee" class="form-control mb-4" [(ngModel)]="selectedMission.villeArrivee"
+                name="villeArrivee" required mdbInputDirective>
+              <label for="villeArrivee">Ville d'arrivée</label>
+            </div>
+            <!-- Transport -->
+            <div class="md-form">
+
+              <select class="browser" [(ngModel)]="selectedMission.transport" name="transport">
+                <option value="" disabled selected>TRANSPORT</option>
+                <option [value]="select.value" *ngFor="let select of tabSelectTransport">{{select.label}}</option>
+              </select>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addModal.hide()"
+                mdbWavesEffect>Annuler</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="new();addModal.hide()"
+                mdbWavesEffect>Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
