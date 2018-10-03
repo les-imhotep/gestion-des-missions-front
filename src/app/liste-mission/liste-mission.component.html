@@ -8,12 +8,17 @@
     Vous pouvez gérer vos missions depuis cette section.
 </p>
 
+<!--  En cas d'erreur -->
+<div *ngIf="err">
+  <label class="red-text">Problème d'accès au backend : {{err}}</label>
+</div>
 
-<div class="mt-4">
+
+<!--  <div class="mt-4"> -->
 
 
   <table class="table table-hover">
-    <thead class="blue white-text ">
+    <thead class="table-success">
       <tr>
         <th scope="col">Date de début</th>
         <th scope="col">Date de fin</th>
@@ -202,6 +207,6 @@
     </div>
   </div>
 
-</div>
+
 
 </div>

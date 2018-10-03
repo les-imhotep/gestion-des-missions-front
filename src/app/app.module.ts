@@ -12,8 +12,6 @@ import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { MenuComponent } from './menu/menu.component';
 import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.component';
 import { PrimesComponent } from './primes/primes.component';
-import { GestionMissionComponent } from './gestion-mission/gestion-mission.component';
-import { PlanningComponent } from './planning/planning.component';
 import { ValidationMissionComponent } from './validation-mission/validation-mission.component';
 import { NatureMissionComponent } from './nature-mission/nature-mission.component';
 import { BandeauComponent } from './bandeau/bandeau.component';
@@ -32,11 +30,10 @@ const routes: Routes = [
   { path:'accueil', component: AccueilComponent},
   { path:'primes', component: PrimesComponent},
   { path:'notesdefrais', component: SaisieNoteDeFraisComponent},
-  { path:'gestion', component: ListeMissionComponent}, // A REMPLACER PAR MISSIONS
-  { path:'planning', component: PlanningComponent},
+  { path:'gestion', component: ListeMissionComponent},
   { path:'validation', component: ValidationMissionComponent}, // Onglet disponible uniquement pour les managers
   { path:'naturemissions', component: ListerNatureMissionComponent}, // Onglet disponible uniquement pour les administrateurs
-  { path: '', redirectTo: '/accueil', pathMatch: 'full'},
+  { path: '', redirectTo: '/auth', pathMatch: 'full'},
   { path: '**',  component: PageNonTrouveeComponent }, // En cas de page inaccessible
   { path: 'missions', component: ListeMissionComponent },
 
@@ -50,8 +47,6 @@ const routes: Routes = [
     MenuComponent,
     PageNonTrouveeComponent,
     PrimesComponent,
-    GestionMissionComponent,
-    PlanningComponent,
     ValidationMissionComponent,
     NatureMissionComponent,
     BandeauComponent,

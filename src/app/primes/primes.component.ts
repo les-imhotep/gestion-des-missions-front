@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MissionService } from '../../services/mission.service';
 import { Mission } from '../../model';
 
 @Component({
   selector: 'app-primes',
   templateUrl: './primes.component.html',
-  styleUrls: ['./primes.component.scss']
+  styleUrls: ['./primes.component.scss'],
+  providers: [MissionService]
 })
 export class PrimesComponent implements OnInit {
 
@@ -13,7 +14,7 @@ export class PrimesComponent implements OnInit {
  err: string;
 
   // Liste des primes
-  missionsTab:Mission[];
+ missionsTab:Mission[];
   mission:Mission;
 
 
@@ -21,7 +22,7 @@ export class PrimesComponent implements OnInit {
 
   ngOnInit() {
 
-    this._MissionServ.findPrime().subscribe(
+    this._MissionServ.listerMission().subscribe(
       tabMissions => (this.missionsTab = tabMissions),
 
       errServeur => {
@@ -32,6 +33,11 @@ export class PrimesComponent implements OnInit {
         }
       }
     )
+  }
+
+
+  primesToExcel() {
+    this._MissionServ.primesToExcel()
   }
 
 } 
