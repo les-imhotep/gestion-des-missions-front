@@ -7,7 +7,7 @@ import { LigneDeFrais, Formulaire } from '../model';
 
 
 // Environnement URL
-const URL_BACKEND= environment.baseUrl;
+const URL_BACKEND= environment.baseUrl + "lignesdefrais";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ const URL_BACKEND= environment.baseUrl;
   listerLigneDeFrais(): Observable<LigneDeFrais[]> {
 
     return this._http
-      .get(URL_BACKEND + "lignesdefrais")
+      .get(URL_BACKEND)
 
       .pipe(
       map((data: any[]) =>

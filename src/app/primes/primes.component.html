@@ -17,8 +17,10 @@
           <h5 class="card-title">
           <i class="fa fa-lg fa-download"></i>  Primes</h5>
           <p class="card-text">Téléchargez le récapitulatif de vos primes au format .xls</p>
+          <div class="row">
           <img src="/assets/image/Excel.jpg" style="align-content: center" width="20%" height="20%">
-          <a href="/assets/tableur/TestPrimes.xls" style="align-content: center">        Téléchargement</a>
+          <button type="button" class="btn btn-outline-success" (click)=primesToExcel()>Téléchargement</button>
+        </div>
         </div>
       </div>
     </div>
@@ -49,8 +51,8 @@
               <tr *ngFor="let prime of missionsTab">
                   <td>{{prime.dateDebut}}</td>
                   <td>{{prime.dateFin}}</td>
-                  <td>{{prime.natureMission}}</td>
-                  <td>{{prime.prime}</td>
+                  <td>{{prime.natureMission.name}}</td>
+                  <td>{{prime.prime}}</td>
               </tr>
             </tbody>
           </table>

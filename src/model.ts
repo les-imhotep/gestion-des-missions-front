@@ -57,17 +57,6 @@ export class NatureMission {
 
 }
 
-export class Prime {
-    constructor(
-        public id: Number,
-        public dateDebut: Date,
-        public dateFin: Date,
-        public natureMission: NatureMission,
-        public montant: Number,
-    ) { }
-
-
-}
 
 export class Mission {
     constructor(

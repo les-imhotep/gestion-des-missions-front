@@ -9,7 +9,7 @@ import { NatureMissionService } from '../../services/naturemission.service';
 @Component({
   selector: 'app-liste-mission',
   templateUrl: './liste-mission.component.html',
-  styleUrls: ['./liste-mission.component.css'],
+  styleUrls: ['./liste-mission.component.scss'],
   providers: [MissionService]
 
 })
