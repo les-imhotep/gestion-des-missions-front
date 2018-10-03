@@ -90,7 +90,6 @@ export class ListerNatureMissionComponent implements OnInit {
   }
 
   new() {
-
     this._natureMissionSrv.addNatureMission(this.selectedNatureMission).subscribe(
 
       (() =>

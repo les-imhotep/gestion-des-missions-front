@@ -1,3 +1,12 @@
+<div class="container">
+
+
+    <header>
+        <!--  Bandeau avec le titre de l'application + le menu -->
+           <app-bandeau></app-bandeau>      
+   </header> 
+                 
+
 <div *ngIf="err">
   <label class="red-text">Problème d'accès au backend : {{err}}</label>
 </div>
@@ -6,8 +15,8 @@
 </div>
 <div class="row">
   <table class="table table-hover">
-    <thead class="grey lighten-2">
-      <tr>
+    <thead>
+      <tr class="table-success">
         <th scope="col">Name</th>
         <th scope="col">Facturée</th>
         <th scope="col">Prime</th>
@@ -31,11 +40,25 @@
         <td *ngIf="natureMission.pourcentage">{{natureMission.pourcentage}}</td>
         <td *ngIf="!natureMission.pourcentage">-</td>
 
+        <div class="row">
+            <div class="col-1"></div>
+        <i class="fa edit" aria-hidden="true">
+            <div class="col-4">
+            <i type="button" (click)="basicModal.show() ; save(natureMission)" class="fa fa-lg fa-pencil text-success" size="sm" mdbBtn>Modifier</i>
+          </div>
+          <div class="col-4">
+            <i type="button" (click)="delete(natureMission)" class="fa fa-lg fa-trash text-danger" size="sm" mdbBtn>Supprimer</i>
+          </div>
+          </i>
+        </div>
+        </tr>
+
+        <!-- 
         <i class="fa edit" aria-hidden="true">
           <button type="button" (click)="basicModal.show() ; save(natureMission)" class="btn btn-outline-danger" size="sm" mdbBtn>Modifier</button>
           <button type="button" (click)="delete(natureMission)" class="btn btn-outline-danger" size="sm" mdbBtn>Supprimer</button>
         </i>
-      </tr>
+      </tr> -->
 
     </tbody>
   </table>
@@ -43,7 +66,7 @@
 
 <div class="row">
 
-  <button type="button" class="btn btn-info" (click)="initCreate();addModal.show()">Ajouter une Nature de mission</button>
+  <button type="button" class="btn btn-outline-success pull-right" (click)="initCreate();addModal.show()">Ajouter une Nature de mission</button>
 
 </div>
 
@@ -176,4 +199,6 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>
