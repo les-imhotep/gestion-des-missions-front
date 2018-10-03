@@ -6,7 +6,6 @@ import { NatureMissionService } from '../../services/naturemission.service';
 
 
 
-
 @Component({
   selector: 'app-liste-mission',
   templateUrl: './liste-mission.component.html',
@@ -19,12 +18,7 @@ export class ListeMissionComponent implements OnInit {
   missions: Mission[];
   err: string;
   transport: Transport;
- 
-  selectedMission: Mission = new Mission(null, null, null, new NatureMission(0, null, false, 0, 0, "", null), null, null, null, null, null);
-  
-  
- 
-  
+  selectedMission: Mission = new Mission(null, null, null, null, null, new NatureMission(0, null, false, 0, 0, "", null), null, null, null, null, null);
   tabSelectTransport = [{
     label: 'AVION',
     value: Transport.AVION
@@ -71,7 +65,7 @@ export class ListeMissionComponent implements OnInit {
   }
 
   initCreate() {
-    this.selectedMission = new Mission(null, null, null, new NatureMission(0, null, false, 0, 0, "", null), null, null, null, null, null);
+    this.selectedMission = new Mission(null, null, null, null, null, new NatureMission(0, null, false, 0, 0, "", null), null, null, null, null, null);
 
   }
 
@@ -95,14 +89,13 @@ export class ListeMissionComponent implements OnInit {
   }
 
   new() {
-    console.log(this.selectedMission.dateDebut);
+    //console.log(this.selectedMission.natureMission)
+    console.log(this.natureMissions)
     this._missServ.addMission(this.selectedMission).subscribe(
 
       (() => {
         this.missions.push(this.selectedMission), this.ngOnInit()
-      }
-
-      ),
+      }),
 
       ((errServeur: HttpErrorResponse) => {
         if (errServeur.error.message) {

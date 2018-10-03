@@ -67,6 +67,8 @@ export class Mission {
         public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
+        public dateDebutAffiche: string,
+        public dateFinAffiche: string,
         public natureMission: NatureMission,
         public villeDepart: string,
         public villeArrivee: string,

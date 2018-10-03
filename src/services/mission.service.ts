@@ -23,6 +23,8 @@ export class MissionService {
                     mission.id,
                     mission.dateDebut,
                     mission.dateFin,
+                    mission.dateDebutAffiche,
+                    mission.dateFinAffiche,
                     mission.natureMission,
                     mission.villeDepart,
                     mission.villeArrivee,

@@ -16,8 +16,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let mission of missions">
-        <td>{{mission.dateDebut}}</td>
-        <td>{{mission.dateFin}}</td>
+        <td>{{mission.dateDebutAffiche}}</td>
+        <td>{{mission.dateFinAffiche}}</td>
         <td>{{mission.natureMission.name}}</td>
         <td>{{mission.villeDepart}}</td>
         <td>{{mission.villeArrivee}}</td>
@@ -121,7 +121,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="addModal.hide()">
             <span aria-hidden="true">×</span>
           </button>
           <h4 class="modal-title w-100" id="myModalLabel">Ajouter Mission</h4>
@@ -180,9 +180,9 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()"
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="addModal.hide()"
                 mdbWavesEffect>Annuler</button>
-              <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="new();basicModal.hide()"
+              <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="new();addModal.hide()"
                 mdbWavesEffect>Enregistrer</button>
             </div>
           </form>
