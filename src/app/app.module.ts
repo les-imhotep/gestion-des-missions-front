@@ -21,12 +21,9 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { SaisieNoteDeFraisComponent } from './saisie-note-de-frais/saisie-note-de-frais.component';
 import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nature-mission.component';
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
-<<<<<<< HEAD
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
  
-=======
->>>>>>> master
 
 const routes: Routes = [
 
@@ -35,7 +32,7 @@ const routes: Routes = [
   { path:'accueil', component: AccueilComponent},
   { path:'primes', component: PrimesComponent},
   { path:'notesdefrais', component: SaisieNoteDeFraisComponent},
-  { path:'gestion', component: GestionMissionComponent}, // A REMPLACER PAR MISSIONS
+  { path:'gestion', component: ListeMissionComponent}, // A REMPLACER PAR MISSIONS
   { path:'planning', component: PlanningComponent},
   { path:'validation', component: ValidationMissionComponent}, // Onglet disponible uniquement pour les managers
   { path:'naturemissions', component: ListerNatureMissionComponent}, // Onglet disponible uniquement pour les administrateurs

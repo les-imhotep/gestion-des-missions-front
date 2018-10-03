@@ -76,7 +76,6 @@ export class ListerNatureMissionComponent implements OnInit {
         }
       }));
   }
-<<<<<<< HEAD
 
   // Ajouter une nature de mission
   initCreate() {
@@ -84,13 +83,6 @@ export class ListerNatureMissionComponent implements OnInit {
   }
 
   // Editer une nature de mission
-=======
-  //On instancie une nouvelle nature à la nature de mission séléctionné pour l'ajout
-  initCreate() {
-    this.selectedNatureMission = new NatureMission(null, null, null, null, null, null, null);
-  }
-  //On instancie la nature de mission séléctionnié à selectedNatureMission pour la modification, tout en gardant les valeurs de la nature de mission actuelle
->>>>>>> master
   save(natureMission: NatureMission) {
     this.selectedNatureMission = natureMission;
   }
@@ -126,7 +118,6 @@ export class ListerNatureMissionComponent implements OnInit {
         }
       }));
   }
-
 
 
   afficher() {

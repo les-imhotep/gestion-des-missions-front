@@ -36,7 +36,6 @@ export class MissionService {
 
     }
 
-<<<<<<< HEAD
     findPrime(): Observable<Mission[]> {
 
         return this._http.get(URL_BACKEND).pipe(
@@ -46,6 +45,8 @@ export class MissionService {
                         mission.id,
                         mission.dateDebut,
                         mission.dateFin,
+                        mission.dateDebutAffiche,
+                        mission.dateFinAffiche,
                         mission.natureMission,
                         mission.villeDepart,
                         mission.villeArrivee,
@@ -55,7 +56,6 @@ export class MissionService {
             )));
     }
 
-=======
     addMission(mission: Mission) {
         console.log(mission);
         return this._http.post(URL_BACKEND + '/new', mission)
@@ -69,6 +69,5 @@ export class MissionService {
     updateMission(missionAModifier: Mission) {
         return this._http.post(URL_BACKEND + '/update', missionAModifier)
     }
->>>>>>> master
 
 }
