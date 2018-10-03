@@ -52,18 +52,19 @@ export class MenuComponent implements OnInit {
 
 // Est connecté en tant que manager
   isManager():boolean {
+    let result = false;
     this.collegue.subscribe(c => {
       if (c && c.roles && c.roles.length>0){
         for (let i=0; i<c.roles.length; i++){
           if (c.roles[i]=='ROLE_MANAGER'){
-            return true;
+            result= true;
           }
         }
       }
-      return false;
     });
-    return false;
+    return result;
   }
+
 
 // Est connecté en tant qu'employé
   isEmploye():boolean {

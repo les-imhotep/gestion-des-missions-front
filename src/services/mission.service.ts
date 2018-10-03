@@ -1,13 +1,35 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders  } from "@angular/common/http";
 import { Mission } from "../model";
 import { environment } from "../environments/environment";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from "@angular/core";
+import { saveAs } from 'file-saver/dist/FileSaver';
 
 const URL_BACKEND = environment.baseUrl + 'missions';
+
+const saveFile = (blobContent: Blob, fileName: string) => {
+    const blob = new Blob([blobContent], { type: 'application/octet-stream' });
+    saveAs(blob, fileName);
+};
+
+/**
+ * Derives file name from the http response
+ * by looking inside content-disposition
+ * @param res http Response
+ */
+const getFileNameFromResponseContentDisposition = (res: Response) => {
+    const contentDisposition = res.headers.get('content-disposition') || '';
+    const matches = /filename=([^;]+)/ig.exec(contentDisposition);
+    const fileName = (matches[1] || 'untitled').trim();
+    return fileName;
+};
+
 @Injectable()
 export class MissionService {
+    
+    
+
     err: string;
     missions: Array<Mission>
     constructor(
@@ -52,9 +74,15 @@ export class MissionService {
     }
 
     // Télécharger le fichier Excel
-  primesToExcel() {
-  return this._http.get(environment.baseUrl + 'primes' + '/ddl');
-}
+    primesToExcel():void {
+        console.log(environment.baseUrl);
+        this._http.get(environment.baseUrl + 'primes/ddl', {"responseType":"blob"}).subscribe(
+            data => {
+                saveFile(data, "primes.xlsx");
+            }, // success path
+            error => console.log(error) // error path
+          );
+    }
 
 
 }

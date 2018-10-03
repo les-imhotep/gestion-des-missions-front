@@ -10,13 +10,12 @@ import { Mission } from '../../model';
 })
 export class PrimesComponent implements OnInit {
 
- // Message d'erreur
- err: string;
+  // Message d'erreur
+  err: string;
 
   // Liste des primes
- missionsTab:Mission[];
+  missionsTab:Mission[];
   mission:Mission;
-
 
   constructor(private _MissionServ:MissionService) { }
 
@@ -37,7 +36,7 @@ export class PrimesComponent implements OnInit {
 
 
   primesToExcel() {
-    this._MissionServ.primesToExcel()
+    this._MissionServ.primesToExcel();
   }
 
 } 
