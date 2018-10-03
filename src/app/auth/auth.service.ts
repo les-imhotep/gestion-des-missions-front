@@ -43,15 +43,14 @@ export class AuthService {
     return this.collegueConnecteSub.asObservable();
   }
 
-  /**
+   /**
    * Interface Observable du collègue connecté.
    *
    * @returns {Observable<Collegue>}
    */
-  getCollegue(): Collegue {
-    return JSON.parse(localStorage.getItem("collegue"));
+  getCollegueConnecteObs(): Observable<Collegue> {
+    return this.collegueConnecteSub.asObservable();
   }
-
   /**
    * Service permettant de vérifier si un collegue est authentifié.
    *

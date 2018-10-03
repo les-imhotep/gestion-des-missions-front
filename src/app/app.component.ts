@@ -19,6 +19,95 @@ import {Collegue} from "./auth/auth.domains";
       </div>
     </div>
     <router-outlet></router-outlet>
+
+
+
+<!-- Début header -->  
+ <header> 
+
+ <!-- Début container-->
+ <div class="container">
+
+ <section *ngIf="isConnecte()">
+ <div class="row">
+
+
+
+ 
+ <div class="col-9">
+ <app-menu></app-menu>
+</div>
+
+ <!-- <app-bandeau></app-bandeau> -->
+ 
+
+
+ <div class="col-3">
+
+ <!-- Carte pour connaitre l'authentification du collègue connecté -->
+ <mdb-card>
+   <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+   <!-- Card img -->
+   <mdb-card-img src="/assets/image/titre3.JPG" alt="Card image cap"></mdb-card-img>
+   <a> <div class="mask"></div> </a>
+   
+   </div>
+
+
+   <!--Card content-->
+   <mdb-card-body>
+ 
+     <!--Text-->
+     <div class="text-center"> 
+     <mdb-card-text>
+     
+     <h6>
+
+     <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_ADMINISTRATEUR,ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"administrateur".</ng-container>
+     <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_UTILISATEUR'" > Vous êtes connecté(e) en tant qu'"utilisateur".</ng-container>
+     <ng-container *ngIf="(collegueConnecte|async).roles == 'ROLE_MANAGER'" > Vous êtes connecté(e) en tant que "manager".</ng-container>
+
+     </h6>
+
+     </mdb-card-text>
+
+     <a  class="btn-sm btn-danger" (click)="seDeconnecter()">Se déconnecter</a> 
+     </div>
+
+   </mdb-card-body>
+ </mdb-card>
+
+ </div>
+ 
+
+ </div>
+
+
+ </section>
+
+<!-- Fin container-->
+</div>
+
+ </header> 
+
+
+
+
+ <!-- Body -->
+<body>
+    <!-- Router -->
+    <div id="content">
+        <router-outlet></router-outlet>
+    </div>
+</body>
+
+
+
+    <!-- Pied de page -->
+<footer>
+</footer>
+
+        
   `,
   styles: []
 })
@@ -29,6 +118,7 @@ export class AppComponent implements OnInit {
   constructor(private _authSrv:AuthService, private _router:Router) {
 
   }
+
 
   /**
    * Action déconnecter collègue.
@@ -47,6 +137,19 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     this.collegueConnecte = this._authSrv.collegueConnecteObs;
+   }
+
+
+   // Est connecté, peu importe son rôle
+  isConnecte():boolean {
+    
+    let result = false;
+    this.collegueConnecte.subscribe(c => {
+      if (c && c.roles && c.roles.length>0){
+            result= true;
+          }
+      });
+    return result;
   }
 
 }

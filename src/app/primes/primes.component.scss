@@ -27,10 +27,15 @@
       color : rgb(102, 117, 107); 
     }
 
-    th, td, .tableaunotedefrais {
+    .tableaunotedefrais {
       text-align: center;
     }
 
     i {
       cursor : pointer;
     }
+
+  th, td, p {
+      text-align: center; 
+      color : rgb(97, 97, 97);
+  }

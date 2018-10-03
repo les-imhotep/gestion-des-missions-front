@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Collegue } from '../auth/auth.domains';
 import { Router } from '@angular/router';
+import {Observable} from "rxjs/internal/Observable";
 
 @Component({
   selector: 'app-menu',
@@ -10,11 +11,9 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  collegue:Collegue;
+  collegue:Observable<Collegue>;
 
   constructor(private authService:AuthService, private _authSrv:AuthService, private _router:Router) {
-
-    this.collegue=authService.getCollegue();
 
    }
 
@@ -30,36 +29,54 @@ export class MenuComponent implements OnInit {
 
 
   ngOnInit() {
+    this.collegue=this.authService.getCollegueConnecteObs();
   }
 
+// On utilise un observable pour récupérer le rôle du collègue qui se connecte
 
+
+// Est connecté en tant qu'administrateur
   isAdmin():boolean {
-    
-    for (let i=0; i<this.collegue.roles.length; i++){
-      if (this.collegue.roles[i]=='ROLE_ADMINISTRATEUR'){
-        return true;
+    let result = false;
+    this.collegue.subscribe(c => {
+      if (c && c.roles && c.roles.length>0){
+        for (let i=0; i<c.roles.length; i++){
+          if (c.roles[i]=='ROLE_ADMINISTRATEUR'){
+            result= true;
+          }
+        }
       }
-    }
-    return false;
+    });
+    return result;
   }
 
-
+// Est connecté en tant que manager
   isManager():boolean {
-    for (let i=0; i<this.collegue.roles.length; i++){
-      if (this.collegue.roles[i]=='ROLE_MANAGER'){
-        return true;
+    this.collegue.subscribe(c => {
+      if (c && c.roles && c.roles.length>0){
+        for (let i=0; i<c.roles.length; i++){
+          if (c.roles[i]=='ROLE_MANAGER'){
+            return true;
+          }
+        }
       }
-    }
+      return false;
+    });
     return false;
   }
 
-
+// Est connecté en tant qu'employé
   isEmploye():boolean {
-    for (let i=0; i<this.collegue.roles.length; i++){
-      if (this.collegue.roles[i]=='ROLE_UTILISATEUR'){
-        return true;
+    this.collegue.subscribe(c => {
+      if (c && c.roles && c.roles.length>0){
+        for (let i=0; i<c.roles.length; i++){
+          if (c.roles[i]=='ROLE_UTILISATEUR'){
+            return true;
+          }
+        }
       }
-    }
+      return false;
+    });
     return false;
-  }
+  } 
 }

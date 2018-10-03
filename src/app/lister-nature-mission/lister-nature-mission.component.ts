@@ -14,6 +14,7 @@ export class ListerNatureMissionComponent implements OnInit {
   facturee: Facturation;
   nonFacturee: Facturation;
   natureMission: NatureMission;
+
   tabSelectFacturation = [{
     label: 'OUI',
     value: Facturation.FACTUREE
@@ -33,7 +34,11 @@ export class ListerNatureMissionComponent implements OnInit {
   formulaire: Formulaire;
   constructor(private _natureMissionSrv: NatureMissionService) { }
 
+
+
   ngOnInit() {
+
+    // Lister les natures de mission
     this.facturee = Facturation.FACTUREE;
     this.nonFacturee = Facturation.NON_FACTUREE;
     this._natureMissionSrv.findAll().subscribe(
@@ -48,6 +53,9 @@ export class ListerNatureMissionComponent implements OnInit {
       }
     )
   }
+
+
+  // Mettre à jour une nature de mission
   updateClick() {
     this._natureMissionSrv.updateNatureMission(this.selectedNatureMission).subscribe(
       (() => {
@@ -68,14 +76,18 @@ export class ListerNatureMissionComponent implements OnInit {
         }
       }));
   }
-  //On instancie une nouvelle nature à la nature de mission séléctionné pour l'ajout
+
+  // Ajouter une nature de mission
   initCreate() {
     this.selectedNatureMission = new NatureMission(null, null, null, null, null, null, null);
   }
-  //On instancie la nature de mission séléctionnié à selectedNatureMission pour la modification, tout en gardant les valeurs de la nature de mission actuelle
+
+  // Editer une nature de mission
   save(natureMission: NatureMission) {
     this.selectedNatureMission = natureMission;
   }
+
+  // Supprimer une nature de mission
   delete(natureMission: NatureMission) {
     this._natureMissionSrv.deleteNatureMission(natureMission).subscribe(
       (() => this.natureMissions = this.natureMissions.filter(natureMission1 => !(natureMission1 == natureMission))),
@@ -89,6 +101,8 @@ export class ListerNatureMissionComponent implements OnInit {
       }));
   }
 
+
+  // Sauvegarde à partir de la modale
   new() {
     this._natureMissionSrv.addNatureMission(this.selectedNatureMission).subscribe(
 
@@ -105,7 +119,11 @@ export class ListerNatureMissionComponent implements OnInit {
       }));
   }
 
+
   afficher() {
     console.log(this.selectedNatureMission)
   }
+
+
+
 }

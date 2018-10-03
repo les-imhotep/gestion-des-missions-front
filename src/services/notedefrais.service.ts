@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { map, filter, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { Injectable } from '@angular/core';
-import { NoteDeFrais } from '../model';
+import { NoteDeFrais, Formulaire } from '../model';
 
 
 // Environnement URL
@@ -15,11 +15,13 @@ const URL_BACKEND= environment.baseUrl;
 
   export class NoteDeFraisService {
 
+  // Message d'erreur
+  err : string;
 
-  // on crée une instance de subject (ne stocke aucune valeur, en temps réel)
+  // Instance de Subject
   private _superBus = new Subject<string>();
 
-  // on écrit un getter
+  // Getter
   get superBus() : Observable<string>{
     return this._superBus.asObservable();
   }
@@ -27,19 +29,5 @@ const URL_BACKEND= environment.baseUrl;
   constructor(private _http: HttpClient) {}
 
 
-  listerNoteDeFrais(): Observable<NoteDeFrais[]> {
-
-    return this._http
-      .get(URL_BACKEND + "notedefrais")
-
-      .pipe(
-      map((data: any[]) =>
-
-      data.map(noteDeFraisServeur =>
-        NoteDeFrais.fromNoteDeFraisServeur(noteDeFraisServeur)
-        ))
-      );
-  }
-
-
-  }
+  // Lister les notes de frais
+}

@@ -1,33 +1,50 @@
-<section class="barre de navigation">
+<section class="menu">
 
+  <h4>
+    Gérez vos missions
+  </h4>
 
-  <nav class="navbar-expand-lg navbar-light bg-light font-weight-bold">
-    <a class="navbar-brand" href="#">Menu</a>
+  <br>
 
-    <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <h5>
+    Vue d'ensemble des rubriques 
+  </h5>
+ 
+    <div class="mx-auto">
+ 
+ <nav class="navbar-expand-lg navbar-light bg-light font-weight-bold">
+ 
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
-      <div class="navbar-nav mr-auto">
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+  aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-        <!-- Menu de base -->
-        <a class="nav-item nav-link active" routerLink="/accueil">Accueil<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" routerLink="/gestion">Gestion des missions</a>
-        <a class="nav-item nav-link" routerLink="/planning">Planning des missions</a>
-        <a class="nav-item nav-link" routerLink="/primes">Primes</a>
-        <a class="nav-item nav-link" routerLink="/notedefrais">Saisie des notes de frais</a>
-        <!-- Menu pour le role 'ROLE_MANAGER'-->
-        <a class="nav-item nav-link" routerLink="/validation" *ngIf="isManager()">Validation des missions</a>
-        <!-- Menu pour le role 'ROLE_ADMINISTRATEUR'-->
-        <a class="nav-item nav-link" routerLink="/naturemissions" *ngIf="isAdmin()">Nature des missions</a>
+ <!-- Collapsible content -->
+<div class="collapse navbar-collapse" id="basicExampleNav">
+    <div class="navbar-nav mr-auto">
 
-      </div>
-  </nav>
+       <!-- Menu de base -->
+      <a class="nav-item nav-link active" routerLink="/accueil">Accueil</a>
+      <a class="nav-item nav-link" routerLink="/gestion">Gestion des missions</a>
+      <a class="nav-item nav-link" routerLink="/planning">Planning des missions</a>
+      <a class="nav-item nav-link" routerLink="/primes">Primes</a>
+      <a class="nav-item nav-link" routerLink="/notesdefrais">Saisie des notes de frais</a>
+      <!-- Menu pour le role 'ROLE_MANAGER'-->
+      <a class="nav-item nav-link" routerLink="/validation" *ngIf="isManager()">Validation des missions</a>
+      <!-- Menu pour le role 'ROLE_ADMINISTRATEUR'-->
+      <a class="nav-item nav-link" routerLink="/naturemissions" *ngIf="isAdmin()">Nature des missions</a>
+      
+    </div>
 
+     <!-- Bouton de déconnexion 
+   
+        <a  class="btn-sm btn-danger pull-right" (click)="seDeconnecter()">Se déconnecter</a> -->
+   
+  </div>
+</nav>
+ 
+</div>
 
 </section>
-<router-outlet></router-outlet>
