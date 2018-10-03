@@ -74,6 +74,8 @@ export class Mission {
         public id: Number,
         public dateDebut: Date,
         public dateFin: Date,
+        public dateDebutAffiche: string,
+        public dateFinAffiche: string,
         public natureMission: NatureMission,
         public villeDepart: string,
         public villeArrivee: string,
@@ -98,10 +100,10 @@ export class Formulaire {
 }
 
 export enum Transport {
-    AVION,
-    COVOITURAGE,
-    TRAIN,
-    VOITURE_SERVICE
+    AVION = "AVION",
+    COVOITURAGE = "COVOITURAGE",
+    TRAIN = "TRAIN",
+    VOITURE_SERVICE = "VOITURE_SERVICE"
 }
 
 export enum Statut {
