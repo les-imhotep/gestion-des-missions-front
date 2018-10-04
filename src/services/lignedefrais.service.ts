@@ -51,7 +51,7 @@ const getFileNameFromResponseContentDisposition = (res: Response) => {
   listerLigneDeFrais(): Observable<LigneDeFrais[]> {
 
     return this._http
-      .get(URL_BACKEND)
+      .get(URL_BACKEND )
 
       .pipe(
       map((data: any[]) =>

@@ -35,6 +35,7 @@ export class PrimesComponent implements OnInit {
   }
 
 
+  // Pour exporter un fichier Excel
   primesToExcel() {
     this._MissionServ.primesToExcel();
   }

@@ -23,7 +23,7 @@
     <div class="card-body">
       <h5 class="card-title">
         <i class="fa fa-lg fa-download"></i>  Notes de frais</h5>
-        <p class="card-text">Téléchargez le récapitulatif de vos frais au format .pdf</p>
+        <p class="card-text">Téléchargez le récapitulatif de vos lignes de frais au format .pdf</p>
       <div class="row">
         <img src="/assets/image/pdf.png" style="align-content: center" width="20%" height="20%">
         <button class="btn btn-outline-success" (click)="notesdefraisToPDF()" mdbBtn>Téléchargement</button>
@@ -55,7 +55,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let ligne of ligneDeFraisTab">
-        <td>{{ligne.dateDebut}}</td>
+        <td>{{ligne.date}}</td>
         <td>{{ligne.natureMission.name | uppercase}}</td>
         <td>{{ligne.frais}} €</td>
         <td>
@@ -121,16 +121,15 @@
     <!-- Boutons Fermer et Sauvegarder -->
     <div class="modal-footer">
         <button type="button" mdbBtn  class="btn btn-outline-dark" aria-label="Close" (click)="addModal.hide()" mdbWavesEffect>Fermer</button>
-        <button type="button" mdbBtn  class="btn btn-outline-success" (click)="new();addModal.hide()" mdbWavesEffect>Sauvegarder</button>
+        <button type="button" mdbBtn  class="btn btn-outline-success" (click)="new();addModal.hide();initCreate" mdbWavesEffect>Sauvegarder</button>
     </div>
 
 
   </div>
 </div>
-
+</div>
+</div>
 </div>
 
-</div>
-</div>
  
 

@@ -16,17 +16,17 @@ ligneDeFrais:LigneDeFrais;
 
 err: string;
 
-selectedLigneDeFrais : LigneDeFrais = new LigneDeFrais(null, null, null, null, null, null, null, null);
+selectedLigneDeFrais : LigneDeFrais = new LigneDeFrais(null, null, null, null);
 formulaire: Formulaire;
 
-constructor(private _lignedefraissrv:LigneDeFraisService) { }
-
+constructor(private _noteDeFraisSrv:NoteDeFraisService) { }
+// en cours
 
 
   ngOnInit() {
 
   // Lister les notes de frais
-    this._lignedefraissrv.listerLigneDeFrais()
+    this._noteDeFraisSrv.listerLigneDeFrais()
     .subscribe(
       tableauNotes => this.ligneDeFraisTab = tableauNotes,
       errServeur => {
@@ -64,7 +64,7 @@ constructor(private _lignedefraissrv:LigneDeFraisService) { }
       
   // Ajouter une ligne de frais
   initCreate() {
-    this.selectedLigneDeFrais = new LigneDeFrais(null, null, null, null, null, null, null, null);
+    this.selectedLigneDeFrais = new LigneDeFrais(null, null, null, null);
   }
 
 
