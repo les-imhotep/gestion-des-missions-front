@@ -107,6 +107,11 @@ constructor(private _lignedefraissrv:LigneDeFraisService) { }
 
 
 
+  // Pour exporter un fichier PDF
+  notesdefraisToPDF() {
+    this._lignedefraissrv.notesdefraisToPDF();
+  }
+
   }
 
 

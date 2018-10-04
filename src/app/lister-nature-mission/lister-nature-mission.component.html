@@ -48,7 +48,7 @@
       <td *ngIf="natureMission.pourcentage">{{natureMission.pourcentage}}</td>
       <td *ngIf="!natureMission.pourcentage">-</td>
 
-     
+    <!--  Boutons d'action : éditer ou supprimer --> 
       <i class="fa edit" aria-hidden="true">
           <div class="row">
           <div class="col-5">
@@ -67,7 +67,7 @@
 </div>
 
 
-<!--  Bouton d'ajout de missions -->
+<!--  Bouton d'ajout de mission -->
 <div class="row">
 
   <button type="button" class="btn btn-outline-success pull-right" (click)="initCreate();addModal.show()">Ajouter une Nature de mission</button>
@@ -131,6 +131,8 @@
       </form>
 
     </div>
+
+    <!-- Boutons Fermer et Sauvegarder -->
     <div class="modal-footer">
       <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Fermer</button>
       <button type="button" mdbBtn  class="btn btn-outline-success" (click)="updateClick();basicModal.hide()" mdbWavesEffect>Sauvegarder</button>
