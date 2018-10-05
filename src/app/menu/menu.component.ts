@@ -29,11 +29,9 @@ export class MenuComponent implements OnInit {
 
 
   ngOnInit() {
-    this.collegue = this.authService.getCollegueConnecteObs();
+    /* this.collegue = this.authService.getCollegueConnecteObs(); */
+    this.collegue = this._authSrv.collegueConnecteObs;
   }
-
-  // On utilise un observable pour récupérer le rôle du collègue qui se connecte
-
 
   // Est connecté en tant qu'administrateur
   isAdmin(): boolean {
@@ -80,4 +78,6 @@ export class MenuComponent implements OnInit {
     });
     return false;
   }
+
+
 }
