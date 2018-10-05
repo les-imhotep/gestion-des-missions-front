@@ -1,135 +1,127 @@
 <div class="container">
 
 
-<!--  En-tête -->
-<h3>Saisie de lignes de frais</h3>
-<p>
+  <!--  En-tête -->
+  <h3>Liste note de frais</h3>
+  <p>
     Vous trouverez dans cette section le récapitulatif de vos remboursements de frais de déplacements et de missions.
-</p>
+  </p>
 
 
-<!--  Traitement des erreurs -->
-<div class="erreur" *ngIf="errMsg">
+  <!--  Traitement des erreurs -->
+  <div class="erreur" *ngIf="errMsg">
     {{errMsg}}
   </div>
 
 
 
-<div class ="row">
-<div class="col-4">
-<!--  Récapitulatif de note de frais -->
-<div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="/assets/image/notedefrais.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">
-        <i class="fa fa-lg fa-download"></i>  Notes de frais</h5>
-        <p class="card-text">Téléchargez le récapitulatif de vos lignes de frais au format .pdf</p>
-      <div class="row">
-        <img src="/assets/image/pdf.png" style="align-content: center" width="20%" height="20%">
-        <button class="btn btn-outline-success" (click)="notesdefraisToPDF()" mdbBtn>Téléchargement</button>
+  <div class="row">
+    <div class="col-4">
+      <!--  Récapitulatif de note de frais -->
+      <div class="card" style="width: 20rem;">
+        <img class="card-img-top" src="/assets/image/notedefrais.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa fa-lg fa-download"></i> Notes de frais</h5>
+          <p class="card-text">Téléchargez le récapitulatif de vos notes de frais au format .pdf</p>
+          <div class="row">
+            <img src="/assets/image/pdf.png" style="align-content: center" width="20%" height="20%">
+            <button class="btn btn-outline-success" (click)="notesDeFraisToPDF()" mdbBtn>Téléchargement</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-8">
+
+
+      <!--  Bouton d'ajout d'une ligne de frais -->
+      <button type="button" class="btn btn-outline-success pull-right" (click)="initCreate();addModal.show()">Ajouter un frais</button>
+
+
+
+
+      <!--  Tableau de notes de frais -->
+      <table class="table table-sm table-bordered table-hover">
+
+        <thead>
+          <tr class="table-success">
+            <th scope="col">Date début</th>
+            <th scope="col">Date fin</th>
+            <th scope="col">Nature de mission</th>
+            <th scope="col">Ville de départ</th>
+            <th scope="col">Ville d'arrivée</th>
+            <th scope="col">Transport</th>
+            <th scope="col">Frais</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let note of noteDeFraisTab">
+            <td>{{note.mission.dateDebut}}</td>
+            <td>{{note.mission.dateFin}}</td>
+            <td>{{note.mission.natureMission.name}}</td>
+            <td>{{note.mission.villeDepart}}</td>
+            <td>{{note.mission.villeArrivee}}</td>
+            <td>{{note.mission.transport}}</td>
+            <td *ngIf="note.frais===null">0€</td>
+            <td>{{note.frais}}€</td>
+            <td>
+              <div class="row">
+                <div class="col-1"></div>
+                <div class="col-5">
+                  <i type="button" class="fa fa-lg fa-pencil text-success" routerLink="/notesdefrais/{{note.id}}" size="sm"></i>
+                </div>
+                <div class="col-5">
+                  <i type="button" class="fa fa-lg fa-trash text-danger" (click)="delete(note)" size="sm"></i>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!--  Modale ajouter une ligne de frais -->
+    <div mdbModal #addModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="addModal.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100" id="myModalLabel">Ajouter une note de frais</h4>
+          </div>
+
+          <div class="modal-body">
+
+            <form name="Form" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
+              <!-- Date -->
+              <div class="md-form">
+                <select class="browser" [(ngModel)]="selectedNoteDeFrais.mission.id" name="natureMission">
+                  <option value="" disabled selected> Mission</option>
+                  <option [value]="mission.id" *ngFor="let mission of missions">{{mission.dateDebutAffiche}} au {{mission.dateFinAffiche}}</option>
+                </select>
+
+              </div>
+            </form>
+
+          </div>
+
+
+          <!-- Boutons Fermer et Sauvegarder -->
+          <div class="modal-footer">
+            <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="addModal.hide()" mdbWavesEffect>Fermer</button>
+            <button type="button" mdbBtn class="btn btn-outline-success" (click)="new();addModal.hide();initCreate" mdbWavesEffect>Sauvegarder</button>
+          </div>
+
+
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-<div class="col-8">
-
-
-  <!--  Bouton d'ajout d'une ligne de frais -->
-<button type="button" class="btn btn-outline-success pull-right" (click)="initCreate();addModal.show()">Ajouter un frais</button>
-
-
-
-
-<!--  Tableau de notes de frais -->
-  <table class="table table-sm table-bordered table-hover">
-    <thead>
-      <tr class="table-success">
-        <th scope="col">Date</th>
-        <th scope="col">Nature</th>
-        <th scope="col">Montant</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let ligne of ligneDeFraisTab">
-        <td>{{ligne.date}}</td>
-        <td>{{ligne.natureMission.name | uppercase}}</td>
-        <td>{{ligne.frais}} €</td>
-        <td>
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-5">
-                <i type="button" class="fa fa-lg fa-pencil text-success" (click)="basicModal.show() ; save(ligne)" size="sm"></i>
-              </div>
-              <div class="col-5">
-                <i type="button" class="fa fa-lg fa-trash text-danger" (click)="delete(ligne)" size="sm"></i>
-              </div>
-            </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
- 
-
-<!--  Modale ajouter une ligne de frais -->
-<div mdbModal #addModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-
-    <div class="modal-header">
-      <button type="button" class="close pull-right" aria-label="Close" (click)="addModal.hide()">
-        <span aria-hidden="true">×</span>
-      </button>
-      <h4 class="modal-title w-100" id="myModalLabel">Ajouter une ligne de frais</h4>
-    </div>
-
-    <div class="modal-body">
-
-      <form name="Form" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
-
-
-        <!-- Date -->
-        <div class="md-form">
-          <input type="date" id="matriculeform" class="form-control mb-4" name="date" [(ngModel)]="selectedLigneDeFrais.dateDebut" required
-            mdbInputDirective>
-        </div>
-
-        <!-- Nature -->
-        <div class="md-form">
-            <input type="text" id="matriculeform" class="form-control mb-4" name="nature" [(ngModel)]="selectedLigneDeFrais.nature" required
-              mdbInputDirective>
-            <label for="matriculeform"> Nature</label>
-        </div>
-  
-
-        <!-- Montant -->
-        <div class="md-form">
-            <input type="text" id="matriculeform" class="form-control mb-4" name="montant" [(ngModel)]="selectedLigneDeFrais.frais" required
-              mdbInputDirective>
-            <label for="matriculeform"> Montant</label>
-        </div>
-
-    </form>
-
-    </div>
-
-    
-    <!-- Boutons Fermer et Sauvegarder -->
-    <div class="modal-footer">
-        <button type="button" mdbBtn  class="btn btn-outline-dark" aria-label="Close" (click)="addModal.hide()" mdbWavesEffect>Fermer</button>
-        <button type="button" mdbBtn  class="btn btn-outline-success" (click)="new();addModal.hide();initCreate" mdbWavesEffect>Sauvegarder</button>
-    </div>
-
-
-  </div>
-</div>
-</div>
-</div>
-</div>
-
- 
-

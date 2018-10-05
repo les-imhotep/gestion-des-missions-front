@@ -10,26 +10,26 @@ export class Absence {
     ) { }
 }
 
-export class NoteDeFrais{
-constructor(
-    public id:Number,
-   public lignesDeFrais:LigneDeFrais[],
-   public mission:Mission
-    ){}
+export class NoteDeFrais {
+    constructor(
+        public id: Number,
+        public lignesDeFrais: LigneDeFrais[],
+        public mission: Mission
+    ) { }
 }
 
 export class LigneDeFrais {
     constructor(
         public id: Number,
         public date: Date,
-        public natureMission: NatureMission,
+        public natureLigne: NatureLigne,
         public frais: Number
     ) { }
 
     static fromLigneDeFraisServeur(noteDeFraisServeur: any): LigneDeFrais {
         const noteIhm = new LigneDeFrais(null, null, null, null);
-        noteIhm.date= noteDeFraisServeur.date;
-        noteIhm.natureMission = noteDeFraisServeur.natureLigne;
+        noteIhm.date = noteDeFraisServeur.date;
+        noteIhm.natureLigne = noteDeFraisServeur.natureLigne;
         noteIhm.frais = noteDeFraisServeur.frais;
         return noteIhm;
     }
@@ -75,7 +75,7 @@ export class Formulaire {
         public facturation: Facturation,
         public prime: boolean,
         public tjm: Number,
-        public pourcentage, Number
+        public pourcentage: Number
 
     ) { }
 }
@@ -103,5 +103,10 @@ export enum Role {
 export enum Facturation {
     FACTUREE = "FACTUREE",
     NON_FACTUREE = "NON_FACTUREE"
+
+}
+
+export enum NatureLigne {
+    RESTAURANT, HOTEL, TAXI, CARBURANT, TICKETS
 
 }
