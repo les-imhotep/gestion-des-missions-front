@@ -36,7 +36,28 @@ export class MissionService {
 
     }
 
-    
+    listerValidationMission(): Observable<Mission[]> {
+        //recuperer la liste des mission coté serveur 
+
+        return this._http.get(URL_BACKEND + '/validation')
+            .pipe(map(((data: any[]) => data.map(mission =>
+                new Mission(
+                    mission.id,
+                    mission.dateDebut,
+                    mission.dateFin,
+                    mission.dateDebutAffiche,
+                    mission.dateFinAffiche,
+                    mission.natureMission,
+                    mission.villeDepart,
+                    mission.villeArrivee,
+                    mission.transport,
+                    mission.statut,
+                    mission.prime))))
+            )
+
+
+    }
+
 
     addMission(mission: Mission) {
         return this._http.post(URL_BACKEND + '/new', mission)
@@ -51,10 +72,14 @@ export class MissionService {
         return this._http.post(URL_BACKEND + '/update', missionAModifier)
     }
 
+    updateStatut(missionAModifier: Mission) {
+        return this._http.post(URL_BACKEND + '/updatestatut', missionAModifier)
+    }
+
     // Télécharger le fichier Excel
-  primesToExcel() {
-  return this._http.get(environment.baseUrl + 'primes' + '/ddl');
-}
+    primesToExcel() {
+        return this._http.get(environment.baseUrl + 'primes' + '/ddl');
+    }
 
 
 }

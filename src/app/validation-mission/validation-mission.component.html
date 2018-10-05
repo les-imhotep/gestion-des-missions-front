@@ -1,1 +1,47 @@
+<!--  En cas d'erreur -->
+<div *ngIf="err">
+    <label class="red-text">Problème d'accès au backend : {{err}}</label>
+</div>
 
+
+<!--  <div class="mt-4"> -->
+
+
+<table class="table table-hover">
+    <thead class="table-success">
+        <tr>
+            <th scope="col">Date de début</th>
+            <th scope="col">Date de fin</th>
+            <th scope="col">Nature de Mission</th>
+            <th scope="col">Ville de départ</th>
+            <th scope="col">Ville d'arrivée</th>
+            <th scope="col">Transport</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <div *ngIf="message">
+        <label class="red-text"> {{message}}</label>
+    </div>
+    <tbody>
+        <tr *ngFor="let mission of missions">
+            <td>{{mission.dateDebutAffiche}}</td>
+            <td>{{mission.dateFinAffiche}}</td>
+            <td>{{mission.natureMission.name}}</td>
+            <td>{{mission.villeDepart}}</td>
+            <td>{{mission.villeArrivee}}</td>
+            <td>{{mission.transport}}</td>
+
+            <td *ngIf="mission.statut === 'EN_ATTENTE_VALIDATION'">EN ATTENTE DE VALIDATION</td>
+            <td *ngIf="mission.statut === rejetee">REJETEE</td>
+            <td *ngIf="mission.statut === validee">VALIDEE</td>
+
+            <button type="button" (click)="save(mission); valideeStatut();" class="btn btn-outline-success" size="sm"
+                mdbBtn>Valider</button>
+            <button type="button" (click)="save(mission); refuserStatut()" class="btn btn-outline-danger" size="sm"
+                mdbBtn>Refuser</button>
+
+
+        </tr>
+    </tbody>
+</table>

@@ -38,9 +38,10 @@ export class ListerNatureMissionComponent implements OnInit {
 
   ngOnInit() {
 
-    // Lister les natures de mission
+
     this.facturee = Facturation.FACTUREE;
     this.nonFacturee = Facturation.NON_FACTUREE;
+    // Lister les natures de mission
     this._natureMissionSrv.findAll().subscribe(
       tabNature => (this.natureMissions = tabNature),
 

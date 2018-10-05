@@ -10,11 +10,11 @@ export class Absence {
     ) { }
 }
 
-export class NoteDeFrais{
-constructor(
-    public id:Number,
-   public lignesDeFrais:LigneDeFrais[]
-    ){}
+export class NoteDeFrais {
+    constructor(
+        public id: Number,
+        public lignesDeFrais: LigneDeFrais[]
+    ) { }
 }
 
 export class LigneDeFrais {
