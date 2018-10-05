@@ -86,7 +86,7 @@
         </div>
         <div class="modal-body">
 
-          <form name="myForm" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
+          <form name="myForm" class="text-center border border-light p-5" #form="ngForm">
             <!-- Name -->
             <div class="md-form">
 
@@ -155,7 +155,7 @@
         </div>
         <div class="modal-body">
 
-          <form name="Form" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
+          <form name="Form" class="text-center border border-light p-5" #form="ngForm">
 
             <!-- Name -->
             <div class="md-form">
@@ -190,7 +190,7 @@
             </div>
 
             <!-- pourcentage -->
-            <div class="md-form" *ngIf="selectedNatureMission.prime == 'true'">
+            <div class="md-form" *ngIf="selectedNatureMission.prime === 'true'">
               <input type="text" id="pourcentage" class="form-control mb-4" name="pourcentage" [(ngModel)]="selectedNatureMission.pourcentage"
                 mdbInputDirective>
               <label for="pourcentage">Pourcentage</label>

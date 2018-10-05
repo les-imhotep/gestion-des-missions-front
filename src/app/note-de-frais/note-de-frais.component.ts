@@ -12,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class NoteDeFraisComponent implements OnInit {
   id: string;
   errMsg: string;
+  missions: Mission[];
   noteDeFrais: NoteDeFrais;
   enum: NatureLigne[];
   selectedLigneDeFrais: LigneDeFrais = new LigneDeFrais(null, null, null, null)
