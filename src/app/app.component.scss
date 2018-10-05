@@ -38,16 +38,7 @@
         position: absolute;
     }
 
-        // Titre de type h2 dans le header
-        #header h2 {
-        padding : 33px 0 5px 40px;
-        font-size : 100%;
-        color : #ccc;
-        font-weight : normal;
-        margin : 0 0 0 270px;
-        border-right : 1px solid #eee;
-        }
-    
+          
         // Corps de la page
         body {
         background-color : rgb(92, 92, 92);
@@ -56,35 +47,10 @@
         font-family : Verdana, Arial, Helvetica, sans-serif;
         font-size : 75%;
         color : #777;
-        margin : 0;
-            }
-    
-    
-        #content h1 {
-        font-family : "Trebuchet MS", Tahoma, Verdana;
-        font-size : 24px;
-        text-transform : uppercase;
-        letter-spacing : 1px;
-        margin : 10px 0 20px 0;
-        color : #90EE90;
-        }
-    
-        // Titre de type h2
-        #content h2 {
-        font-size : 16px;
-        color : #90EE90;
-        font-family : "Trebuchet MS", Tahoma, Verdana;
-        margin : 10px;
-        }
-    
-        #body p {
-        line-height : 20px;
-        word-spacing : 2px;
-        padding : 0 0 0 20px;
-        text-indent : 20px;
-        margin : 20px 0 20px 0;
-        }
-    
+        
+            }    
+           
+           
         // Footer
         #footer {
         padding : 20px;
@@ -96,5 +62,9 @@
         // Texte secondaire du footer
         #footer p {
         color : #ccff00;
+        }
+
+        .position{
+            margin-top: 50%;
         }
     
