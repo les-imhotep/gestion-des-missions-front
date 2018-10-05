@@ -13,8 +13,6 @@ import { MenuComponent } from './menu/menu.component';
 import { PageNonTrouveeComponent } from './page-non-trouvee/page-non-trouvee.component';
 import { PrimesComponent } from './primes/primes.component';
 import { ValidationMissionComponent } from './validation-mission/validation-mission.component';
-import { NatureMissionComponent } from './nature-mission/nature-mission.component';
-import { BandeauComponent } from './bandeau/bandeau.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { SaisieNoteDeFraisComponent } from './saisie-note-de-frais/saisie-note-de-frais.component';
 import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nature-mission.component';
@@ -22,6 +20,7 @@ import { ListeMissionComponent } from './liste-mission/liste-mission.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
 import { NoteDeFraisComponent } from './note-de-frais/note-de-frais.component';
+import { PlanningComponent } from './planning/planning.component';
 
 
 const routes: Routes = [
@@ -38,7 +37,7 @@ const routes: Routes = [
   /* { path: '**', component: PageNonTrouveeComponent }, // En cas de page inaccessible */
   { path: 'missions', component: ListeMissionComponent },
   { path: 'notesdefrais/:id', component: NoteDeFraisComponent },
-
+  { path: 'planning', component: PlanningComponent },
 ];
 
 @NgModule({
@@ -50,14 +49,13 @@ const routes: Routes = [
     PageNonTrouveeComponent,
     PrimesComponent,
     ValidationMissionComponent,
-    NatureMissionComponent,
-    BandeauComponent,
     AccueilComponent,
     SaisieNoteDeFraisComponent,
     ListerNatureMissionComponent,
     ListeMissionComponent,
     jqxChartComponent,
-    NoteDeFraisComponent
+    NoteDeFraisComponent,
+    PlanningComponent
   ],
   imports: [
     BrowserModule,
