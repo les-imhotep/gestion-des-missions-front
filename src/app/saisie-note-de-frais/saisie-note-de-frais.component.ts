@@ -1,83 +1,104 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NoteDeFrais, Transport, NatureMission, Facturation, Formulaire, LigneDeFrais } from '../../model';
+import { NoteDeFrais, Transport, NatureMission, Facturation, Formulaire, LigneDeFrais, Mission } from '../../model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LigneDeFraisService } from '../../services/lignedefrais.service';
+import { NoteDeFraisService } from '../../services/notedefrais.service';
+import { MissionService } from '../../services/mission.service';
 
 @Component({
   selector: 'app-saisie-note-de-frais',
   templateUrl: './saisie-note-de-frais.component.html',
-  styleUrls: ['./saisie-note-de-frais.component.scss']
+  styleUrls: ['./saisie-note-de-frais.component.scss'],
+  providers: [MissionService]
 })
 export class SaisieNoteDeFraisComponent implements OnInit {
 
   // Liste des notes de frais
-ligneDeFraisTab:LigneDeFrais[];
-ligneDeFrais:LigneDeFrais;
+  missions: Mission[];
+  noteDeFraisTab: NoteDeFrais[];
+  noteDeFrais: NoteDeFrais;
 
-err: string;
+  err: string;
 
-selectedLigneDeFrais : LigneDeFrais = new LigneDeFrais(null, null, null, null);
-formulaire: Formulaire;
+  selectedNoteDeFrais: NoteDeFrais = new NoteDeFrais(null, null, new Mission(null, null, null, null, null, null, null, null, null, null, null));
+  formulaire: Formulaire;
 
-constructor(private _lignedefraissrv:LigneDeFraisService) { }
+  constructor(private _noteDeFraisSrv: NoteDeFraisService, private _missionSrv: MissionService) { }
 
 
 
   ngOnInit() {
 
-  // Lister les notes de frais
-    this._lignedefraissrv.listerLigneDeFrais()
-    .subscribe(
-      tableauNotes => this.ligneDeFraisTab = tableauNotes,
+    // Lister les notes de frais
+
+    this._missionSrv.listerMission().subscribe(
+      tabMission => this.missions = tabMission,
       errServeur => {
         if (errServeur.code && errServeur.message) {
           this.err = errServeur.message;
         } else {
-          this.err = 'Erreur technique côté serveur'; 
+          this.err = 'Erreur technique côté serveur';
+        }
       }
-    }
-    );
+    )
+    this._noteDeFraisSrv.listerNoteDeFrais()
+      .subscribe(
+        tableauNotes => this.noteDeFraisTab = tableauNotes,
+        errServeur => {
+          if (errServeur.code && errServeur.message) {
+            this.err = errServeur.message;
+          } else {
+            this.err = 'Erreur technique côté serveur';
+          }
+        }
+      );
   }
 
 
   // Mettre à jour une note de frais
   updateClick() {
-    this._lignedefraissrv.updateLigneDeFrais(this.selectedLigneDeFrais).subscribe(
+    this._noteDeFraisSrv.updateNoteDeFrais(this.selectedNoteDeFrais).subscribe(
       (() => {
-        for (let i; i < this.ligneDeFraisTab.length; i++) {
-          if (this.ligneDeFraisTab[i].id == this.selectedLigneDeFrais.id) {
-            (() => this.ligneDeFraisTab = this.ligneDeFraisTab.splice(i, 1));
-            this.ligneDeFraisTab.push(this.selectedLigneDeFrais);
+        for (let i; i < this.noteDeFraisTab.length; i++) {
+          if (this.noteDeFraisTab[i].id == this.selectedNoteDeFrais.id) {
+            (() => this.noteDeFraisTab = this.noteDeFraisTab.splice(i, 1));
+            this.noteDeFraisTab.push(this.selectedNoteDeFrais);
           }
+          this.ngOnInit();
         }
       }),
-  
+
       ((errServeur: HttpErrorResponse) => {
-  
+
         if (errServeur.error.message) {
           this.err = errServeur.error.message;
         } else {
           this.err = errServeur.error.text;
         }
-      })); }
+      }));
 
-      
-  // Ajouter une ligne de frais
-  initCreate() {
-    this.selectedLigneDeFrais = new LigneDeFrais(null, null, null, null);
   }
 
 
- // Editer une ligne de frais
-  save(ligneDeFrais: LigneDeFrais) {
-    this.selectedLigneDeFrais = ligneDeFrais;
+  // Ajouter une ligne de frais
+  initCreate() {
+    this.selectedNoteDeFrais = new NoteDeFrais(null, null, new Mission(null, null, null, null, null, null, null, null, null, null, null));
+  }
+
+
+  // Editer une ligne de frais
+  save(noteDeFrais: NoteDeFrais) {
+    this.selectedNoteDeFrais = noteDeFrais;
   }
 
 
   // Supprimer une ligne de frais
-  delete(ligneDeFrais: LigneDeFrais) {
-    this._lignedefraissrv.deleteLigneDeFrais(ligneDeFrais).subscribe(
-      (() => this.ligneDeFraisTab = this.ligneDeFraisTab.filter(ligneDeFrais1 => !(ligneDeFrais1 == this.ligneDeFrais))),
+  delete(noteDeFrais: NoteDeFrais) {
+    this._noteDeFraisSrv.deleteNoteDeFrais(noteDeFrais).subscribe(
+      (() => {
+        this.noteDeFraisTab = this.noteDeFraisTab.filter(noteDeFrais1 => !(noteDeFrais1 == this.noteDeFrais))
+        this.ngOnInit();
+      }),
       ((errServeur: HttpErrorResponse) => {
 
         if (errServeur.error.message) {
@@ -90,11 +111,13 @@ constructor(private _lignedefraissrv:LigneDeFraisService) { }
 
   // Sauvegarde à partir de la modale
   new() {
-    this._lignedefraissrv.addLigneDeFrais(this.selectedLigneDeFrais).subscribe(
+    console.log(this.selectedNoteDeFrais)
+    this._noteDeFraisSrv.addNoteDeFrais(this.selectedNoteDeFrais).subscribe(
 
-      (() =>
-        this.ligneDeFraisTab.push(this.selectedLigneDeFrais)
-      ),
+      (() => {
+        this.noteDeFraisTab.push(this.selectedNoteDeFrais)
+        this.ngOnInit();
+      }),
 
       ((errServeur: HttpErrorResponse) => {
         if (errServeur.error.message) {
@@ -103,15 +126,16 @@ constructor(private _lignedefraissrv:LigneDeFraisService) { }
           this.err = errServeur.error.text;
         }
       }));
+    this.ngOnInit();
   }
 
 
 
   // Pour exporter un fichier PDF
-  notesdefraisToPDF() {
-    this._lignedefraissrv.notesdefraisToPDF();
+  notesDeFraisToPDF() {
+    this._noteDeFraisSrv.notesDeFraisToPDF();
   }
 
-  }
+}
 
 

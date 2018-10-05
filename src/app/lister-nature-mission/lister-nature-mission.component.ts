@@ -106,9 +106,12 @@ export class ListerNatureMissionComponent implements OnInit {
   new() {
     this._natureMissionSrv.addNatureMission(this.selectedNatureMission).subscribe(
 
-      (() =>
+      (() => {
         this.natureMissions.push(this.selectedNatureMission)
+        this.ngOnInit();
+      }
       ),
+
 
       ((errServeur: HttpErrorResponse) => {
         if (errServeur.error.message) {
