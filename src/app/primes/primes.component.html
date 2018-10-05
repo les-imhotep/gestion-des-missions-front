@@ -2,25 +2,25 @@
  <div class="container">
  
 
-<!--  En-tête -->
-<h3>Récapitulatif des primes</h3>
-<p>
-    Vous trouverez dans cette section le récapitulatif de vos rémunérations.
-</p>
+  <!--  En-tête -->
+  <h3>Récapitulatif des primes</h3>
+  <p>
+      Vous trouverez dans cette section le récapitulatif de vos rémunérations.
+  </p>
 
-<!--  Tableau Excel à télécharger -->
-<div class ="row">
-        <div class="col-4">
-<div class="card" style="width: 18rem;">
+  <!--  Tableau Excel à télécharger -->
+  <div class ="row">
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="/assets/image/primes.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">
           <i class="fa fa-lg fa-download"></i>  Primes</h5>
-          <p class="card-text">Téléchargez le récapitulatif de vos primes au format .xls</p>
+          <p class="card-text">Téléchargez le récapitulatif de vos primes au format .xlsx</p>
           <div class="row">
-          <img src="/assets/image/Excel.jpg" style="align-content: center" width="20%" height="20%">
-          <button type="button" class="btn btn-outline-success" (click)=primesToExcel()>Téléchargement</button>
-        </div>
+            <img src="/assets/image/excel.png" style="align-content: center" width="20%" height="20%">
+            <button class="btn btn-outline-success" (click)="primesToExcel()" mdbBtn>Téléchargement</button>
+          </div>
         </div>
       </div>
     </div>

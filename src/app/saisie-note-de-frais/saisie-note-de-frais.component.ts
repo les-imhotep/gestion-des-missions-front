@@ -10,20 +10,21 @@ import { LigneDeFraisService } from '../../services/lignedefrais.service';
 })
 export class SaisieNoteDeFraisComponent implements OnInit {
 
+  /*
   // Liste des notes de frais
 ligneDeFraisTab:LigneDeFrais[];
 ligneDeFrais:LigneDeFrais;
 
 err: string;
 
-selectedLigneDeFrais : LigneDeFrais = new LigneDeFrais(null, null, null, null, null, null, null, null);
+selectedLigneDeFrais : LigneDeFrais = new LigneDeFrais(null, null, null, null);
 formulaire: Formulaire;
 
 constructor(private _lignedefraissrv:LigneDeFraisService) { }
 
 
 
-  ngOnInit() {
+ */ ngOnInit() { /*
 
   // Lister les notes de frais
     this._lignedefraissrv.listerLigneDeFrais()
@@ -64,7 +65,7 @@ constructor(private _lignedefraissrv:LigneDeFraisService) { }
       
   // Ajouter une ligne de frais
   initCreate() {
-    this.selectedLigneDeFrais = new LigneDeFrais(null, null, null, null, null, null, null, null);
+    this.selectedLigneDeFrais = new LigneDeFrais(null, null, null, null);
   }
 
 
@@ -107,6 +108,11 @@ constructor(private _lignedefraissrv:LigneDeFraisService) { }
 
 
 
-  }
+  // Pour exporter un fichier PDF
+  notesdefraisToPDF() {
+    this._lignedefraissrv.notesdefraisToPDF();
+  } */
 
+  }
+} // a suppr
 

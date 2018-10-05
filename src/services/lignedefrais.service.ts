@@ -4,10 +4,28 @@ import { map, filter, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { Injectable } from '@angular/core';
 import { LigneDeFrais, Formulaire } from '../model';
-
+import { saveAs } from 'file-saver/dist/FileSaver';
 
 // Environnement URL
 const URL_BACKEND= environment.baseUrl + "lignesdefrais";
+
+const saveFile = (blobContent: Blob, fileName: string) => {
+  const blob = new Blob([blobContent], { type: 'application/octet-stream' });
+  saveAs(blob, fileName);
+};
+
+
+/**
+ * Derives file name from the http response
+ * by looking inside content-disposition
+ * @param res http Response
+ */
+const getFileNameFromResponseContentDisposition = (res: Response) => {
+  const contentDisposition = res.headers.get('content-disposition') || '';
+  const matches = /filename=([^;]+)/ig.exec(contentDisposition);
+  const fileName = (matches[1] || 'untitled').trim();
+  return fileName;
+};
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +51,7 @@ const URL_BACKEND= environment.baseUrl + "lignesdefrais";
   listerLigneDeFrais(): Observable<LigneDeFrais[]> {
 
     return this._http
-      .get(URL_BACKEND)
+      .get(URL_BACKEND )
 
       .pipe(
       map((data: any[]) =>
@@ -60,5 +78,15 @@ const URL_BACKEND= environment.baseUrl + "lignesdefrais";
       return this._http.post(URL_BACKEND + `/update`, ligneDeFraisAModifier);
 }
   
+ // Télécharger le fichier PDF
+ notesdefraisToPDF():void {
+  console.log(environment.baseUrl);
+  this._http.get(environment.baseUrl + 'notesdefrais/pdf', {"responseType":"blob"}).subscribe(
+      data => {
+          saveFile(data, "notesdefrais.pdf");
+      }, // success path
+      error => console.log(error) // error path
+    );
+}
 
   }
