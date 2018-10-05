@@ -22,11 +22,6 @@ import { ListeMissionComponent } from './liste-mission/liste-mission.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
 
-<<<<<<< HEAD
-
- 
-=======
->>>>>>> master
 
 const routes: Routes = [
 
@@ -60,7 +55,7 @@ const routes: Routes = [
     ListerNatureMissionComponent,
     ListeMissionComponent,
     jqxChartComponent
-   
+
 
   ],
   imports: [
