@@ -19,24 +19,27 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { SaisieNoteDeFraisComponent } from './saisie-note-de-frais/saisie-note-de-frais.component';
 import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nature-mission.component';
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
 
+<<<<<<< HEAD
 
  
+=======
+>>>>>>> master
 
 const routes: Routes = [
 
-  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
-  { path:'auth', component: AuthComponent},
-  { path:'accueil', component: AccueilComponent},
-  { path:'primes', component: PrimesComponent},
-  { path:'notesdefrais', component: SaisieNoteDeFraisComponent},
-  { path:'gestion', component: ListeMissionComponent},
-  { path:'validation', component: ValidationMissionComponent}, // Onglet disponible uniquement pour les managers
-  { path:'naturemissions', component: ListerNatureMissionComponent}, // Onglet disponible uniquement pour les administrateurs
-  { path: '', redirectTo: '/auth', pathMatch: 'full'},
-  { path: '**',  component: PageNonTrouveeComponent }, // En cas de page inaccessible
+  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
+  { path: 'auth', component: AuthComponent },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'primes', component: PrimesComponent },
+  { path: 'notesdefrais', component: SaisieNoteDeFraisComponent },
+  { path: 'gestion', component: ListeMissionComponent },
+  { path: 'validation', component: ValidationMissionComponent }, // Onglet disponible uniquement pour les managers
+  { path: 'naturemissions', component: ListerNatureMissionComponent }, // Onglet disponible uniquement pour les administrateurs
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
+  { path: '**', component: PageNonTrouveeComponent }, // En cas de page inaccessible
   { path: 'missions', component: ListeMissionComponent },
 
 ];
