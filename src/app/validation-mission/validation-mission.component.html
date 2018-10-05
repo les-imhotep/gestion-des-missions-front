@@ -1,6 +1,6 @@
 <!--  En cas d'erreur -->
 <div *ngIf="err">
-    <label class="red-text">Problème d'accès au backend : {{err}}</label>
+    <label class="red-text">{{err}}</label>
 </div>
 
 
@@ -36,10 +36,8 @@
             <td *ngIf="mission.statut === rejetee">REJETEE</td>
             <td *ngIf="mission.statut === validee">VALIDEE</td>
 
-            <button type="button" (click)="save(mission); valideeStatut();" class="btn btn-outline-success" size="sm"
-                mdbBtn>Valider</button>
-            <button type="button" (click)="save(mission); refuserStatut()" class="btn btn-outline-danger" size="sm"
-                mdbBtn>Refuser</button>
+            <button type="button" (click)="save(mission); valideeStatut();" class="btn btn-outline-success" size="sm" mdbBtn>Valider</button>
+            <button type="button" (click)="save(mission); refuserStatut()" class="btn btn-outline-danger" size="sm" mdbBtn>Refuser</button>
 
 
         </tr>

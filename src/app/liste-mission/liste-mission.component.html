@@ -10,69 +10,68 @@
 
   <!--  En cas d'erreur -->
   <div *ngIf="err">
-    <label class="red-text">Problème d'accès au backend : {{err}}</label>
+    <label class="red-text">{{err}}</label>
   </div>
 
 
   <!--  <div class="mt-4"> -->
 
-<!--  Tableau de gestion de missions -->
-<div class="row">
-  <table class="table table-hover">
-    <thead class="table-success">
-      <tr>
-        <th scope="col">Date de début</th>
-        <th scope="col">Date de fin</th>
-        <th scope="col">Nature de Mission</th>
-        <th scope="col">Ville de départ</th>
-        <th scope="col">Ville d'arrivée</th>
-        <th scope="col">Transport</th>
-        <th scope="col">Statut</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let mission of missions">
-        <td>{{mission.dateDebutAffiche}}</td>
-        <td>{{mission.dateFinAffiche}}</td>
-        <td>{{mission.natureMission.name}}</td>
-        <td>{{mission.villeDepart}}</td>
-        <td>{{mission.villeArrivee}}</td>
-        <td>{{mission.transport}}</td>
-        <td>{{mission.statut}}</td>
+  <!--  Tableau de gestion de missions -->
+  <div class="row">
+    <table class="table table-hover">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Date de début</th>
+          <th scope="col">Date de fin</th>
+          <th scope="col">Nature de Mission</th>
+          <th scope="col">Ville de départ</th>
+          <th scope="col">Ville d'arrivée</th>
+          <th scope="col">Transport</th>
+          <th scope="col">Statut</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mission of missions">
+          <td>{{mission.dateDebutAffiche}}</td>
+          <td>{{mission.dateFinAffiche}}</td>
+          <td>{{mission.natureMission.name}}</td>
+          <td>{{mission.villeDepart}}</td>
+          <td>{{mission.villeArrivee}}</td>
+          <td>{{mission.transport}}</td>
+          <td>{{mission.statut}}</td>
 
-<!--  Boutons d'action : éditer ou supprimer -->
-        <div class="row">
-
-         
-
-        <div class="col-5">
-          <i type="button" class="fa fa-lg fa-pencil text-success" (click)="basicModal.show() ; save(mission)" size="sm"></i>
-        </div>
-
-        <div class="col-5">
-          <i type="button" class="fa fa-lg fa-trash text-danger" (click)="delete(mission)" size="sm"></i>
-        </div>
-      </div>
+          <!--  Boutons d'action : éditer ou supprimer -->
+          <div class="row">
 
 
-      </tr>
-    </tbody>
-  </table>
-</div>
 
-<!--  Bouton d'ajout de mission -->
+            <div class="col-5">
+              <i type="button" class="fa fa-lg fa-pencil text-success" (click)="basicModal.show() ; save(mission)" size="sm"></i>
+            </div>
+
+            <div class="col-5">
+              <i type="button" class="fa fa-lg fa-trash text-danger" (click)="delete(mission)" size="sm"></i>
+            </div>
+          </div>
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--  Bouton d'ajout de mission -->
   <div class="row">
 
     <button type="button" class="btn btn-outline-success pull-right" (click)="initCreate();addModal.show()">Ajouter une Mission</button>
 
   </div>
 
-  
+
 
   <!--  Modale pour modifier une mission -->
-  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
-    aria-hidden="true">
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -87,16 +86,15 @@
             <!-- Date de debut-->
             <div class="md-form">
 
-              <input type="date" id="dateDebut" class="form-control mb-4" [(ngModel)]="selectedMission.dateDebut" name="dateDebut"
-                required mdbInputDirective>
+              <input type="date" id="dateDebut" class="form-control mb-4" [(ngModel)]="selectedMission.dateDebut" name="dateDebut" required
+                mdbInputDirective>
 
             </div>
 
             <!-- Date de fin-->
             <div class="md-form">
 
-              <input type="date" id="dateFin" class="form-control mb-4" [(ngModel)]="selectedMission.dateFin" name="dateFin"
-                required mdbInputDirective>
+              <input type="date" id="dateFin" class="form-control mb-4" [(ngModel)]="selectedMission.dateFin" name="dateFin" required mdbInputDirective>
 
             </div>
 
@@ -113,16 +111,16 @@
             <!--Ville de départ-->
             <div class="md-form">
 
-              <input type="text" id="villeDepart" class="form-control mb-4" [(ngModel)]="selectedMission.villeDepart"
-                name="villeDepart" required mdbInputDirective>
+              <input type="text" id="villeDepart" class="form-control mb-4" [(ngModel)]="selectedMission.villeDepart" name="villeDepart"
+                required mdbInputDirective>
               <label for="villeDepart"> Ville de départ</label>
             </div>
 
             <!--Ville d'arrivée-->
             <div class="md-form">
 
-              <input type="text" id="villeArrivee" class="form-control mb-4" [(ngModel)]="selectedMission.villeArrivee"
-                name="villeArrivee" required mdbInputDirective>
+              <input type="text" id="villeArrivee" class="form-control mb-4" [(ngModel)]="selectedMission.villeArrivee" name="villeArrivee"
+                required mdbInputDirective>
               <label for="villeArrivee">Ville d'arrivée</label>
             </div>
 
@@ -136,10 +134,10 @@
 
             </div>
 
-              <!-- Boutons Fermer et Sauvegarder -->
+            <!-- Boutons Fermer et Sauvegarder -->
             <div class="modal-footer">
-                <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Fermer</button>
-                <button type="button" mdbBtn  class="btn btn-outline-success" (click)="new();basicModal.hide()" mdbWavesEffect>Sauvegarder</button>
+              <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Fermer</button>
+              <button type="button" mdbBtn class="btn btn-outline-success" (click)="new();basicModal.hide()" mdbWavesEffect>Sauvegarder</button>
             </div>
 
           </form>
@@ -152,8 +150,7 @@
 
 
   <!--  Modale pour ajouter une mission -->
-  <div mdbModal #addModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
-    aria-hidden="true">
+  <div mdbModal #addModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
 
       <div class="modal-content">
@@ -168,17 +165,16 @@
         <div class="modal-body">
 
           <form name="myForm" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
-            
+
             <!-- Date de debut-->
             <div class="md-form">
-              <input type="date" id="dateDebut" class="form-control mb-4" [(ngModel)]="selectedMission.dateDebut" name="dateDebut"
-                required mdbInputDirective>
+              <input type="date" id="dateDebut" class="form-control mb-4" [(ngModel)]="selectedMission.dateDebut" name="dateDebut" required
+                mdbInputDirective>
             </div>
 
             <!-- Date de fin-->
             <div class="md-form">
-              <input type="date" id="dateFin" class="form-control mb-4" [(ngModel)]="selectedMission.dateFin" name="dateFin"
-                required mdbInputDirective>
+              <input type="date" id="dateFin" class="form-control mb-4" [(ngModel)]="selectedMission.dateFin" name="dateFin" required mdbInputDirective>
             </div>
 
             <!--Nature de Mission-->
@@ -191,15 +187,15 @@
 
             <!--Ville de départ-->
             <div class="md-form">
-              <input type="text" id="villeDepart" class="form-control mb-4" [(ngModel)]="selectedMission.villeDepart"
-                name="villeDepart" required mdbInputDirective>
+              <input type="text" id="villeDepart" class="form-control mb-4" [(ngModel)]="selectedMission.villeDepart" name="villeDepart"
+                required mdbInputDirective>
               <label for="villeDepart"> Ville de départ</label>
             </div>
 
             <!--Ville d'arrivée-->
             <div class="md-form">
-              <input type="text" id="villeArrivee" class="form-control mb-4" [(ngModel)]="selectedMission.villeArrivee"
-                name="villeArrivee" required mdbInputDirective>
+              <input type="text" id="villeArrivee" class="form-control mb-4" [(ngModel)]="selectedMission.villeArrivee" name="villeArrivee"
+                required mdbInputDirective>
               <label for="villeArrivee">Ville d'arrivée</label>
             </div>
 
@@ -213,8 +209,8 @@
 
             <!-- Boutons Fermer et Sauvegarder -->
             <div class="modal-footer">
-                <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="addModal.hide()" mdbWavesEffect>Fermer</button>
-                <button type="button" mdbBtn  class="btn btn-outline-success" (click)="new();addModal.hide()" mdbWavesEffect>Sauvegarder</button>
+              <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="addModal.hide()" mdbWavesEffect>Fermer</button>
+              <button type="button" mdbBtn class="btn btn-outline-success" (click)="new();addModal.hide()" mdbWavesEffect>Sauvegarder</button>
             </div>
 
           </form>
@@ -222,7 +218,7 @@
 
       </div>
     </div>
-</div>
+  </div>
 
 
 
