@@ -6,45 +6,62 @@
 
   <br>
 
-  <h5>
-    Vue d'ensemble des rubriques 
-  </h5>
- 
-    <div class="mx-auto">
- 
- <nav class="navbar-expand-lg navbar-light bg-light font-weight-bold">
- 
+  <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark grey scrolling-navbar ie-nav" [containerInside]="false">
+    <mdb-navbar-brand>
+      <a class="logo navbar-brand" routerLink="/accueil"><img class="img-fluid" src="/assets/image/logov3.png"
+          img-thumbnail></a>
+    </mdb-navbar-brand>
 
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
-  aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
+    <links class="text-center">
+      <ul class="navbar-nav mr-auto col-9 ">
+        <li class="nav-item waves-light " mdbWavesEffect>
+          <a class="nav-link" routerLink="/accueil">Accueil</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" routerLink="/gestion">Gestion des missions</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" routerLink="/planning">Planning des missions</a>
+        </li>
+        <li class="nav-item waves-light col-1.5 " mdbWavesEffect>
+          <a class="nav-link" routerLink="/primes">Primes</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" routerLink="/notesdefrais">Saisie des notes de frais</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" routerLink="/validation" *ngIf="isManager()">Validation des missions</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" routerLink="/naturemissions" *ngIf="isAdmin()">Nature des missions</a>
+        </li>
 
- <!-- Collapsible content -->
-<div class="collapse navbar-collapse" id="basicExampleNav">
-    <div class="navbar-nav mr-auto">
+      </ul>
 
-       <!-- Menu de base -->
-      <a class="nav-item nav-link active" routerLink="/accueil">Accueil</a>
-      <a class="nav-item nav-link" routerLink="/gestion">Gestion des missions</a>
-      <a class="nav-item nav-link" routerLink="/planning">Planning des missions</a>
-      <a class="nav-item nav-link" routerLink="/primes">Primes</a>
-      <a class="nav-item nav-link" routerLink="/notesdefrais">Saisie des notes de frais</a>
-      <!-- Menu pour le role 'ROLE_MANAGER'-->
-      <a class="nav-item nav-link" routerLink="/validation" *ngIf="isManager()">Validation des missions</a>
-      <!-- Menu pour le role 'ROLE_ADMINISTRATEUR'-->
-      <a class="nav-item nav-link" routerLink="/naturemissions" *ngIf="isAdmin()">Nature des missions</a>
-      
-    </div>
+      <div class="nav-item-right col-3">
+        <div class="jumbotron">
+          <h6>
 
-     <!-- Bouton de déconnexion 
-   
-        <a  class="btn-sm btn-danger pull-right" (click)="seDeconnecter()">Se déconnecter</a> -->
-   
-  </div>
-</nav>
- 
-</div>
+            <div *ngIf="(collegue|async).roles == 'ROLE_ADMINISTRATEUR,ROLE_UTILISATEUR'"> Connecté(e) en tant <br>
+              qu'administrateur.</div>
+            <div *ngIf="(collegue|async).roles == 'ROLE_UTILISATEUR'"> Connecté(e) en
+              tant qu'utilisateur.</div>
+            <div *ngIf="(collegue|async).roles == 'ROLE_MANAGER'"> Connecté(e) en tant
+              que manager.</div>
+
+          </h6>
+          <a class="btn btn-danger" (click)="seDeconnecter()">Deconnexion</a>
+
+
+
+        </div>
+      </div>
+
+
+    </links>
+
+  </mdb-navbar>
+
+
 
 </section>

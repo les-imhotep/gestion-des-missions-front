@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Collegue } from '../auth/auth.domains';
 import { Router } from '@angular/router';
-import {Observable} from "rxjs/internal/Observable";
+import { Observable } from "rxjs/internal/Observable";
 
 @Component({
   selector: 'app-menu',
@@ -11,38 +11,36 @@ import {Observable} from "rxjs/internal/Observable";
 })
 export class MenuComponent implements OnInit {
 
-  collegue:Observable<Collegue>;
+  collegue: Observable<Collegue>;
 
-  constructor(private authService:AuthService, private _authSrv:AuthService, private _router:Router) {
+  constructor(private authService: AuthService, private _authSrv: AuthService, private _router: Router) {
 
-   }
+  }
 
-   /**
-    * Action déconnecter collègue.
-    */
-   seDeconnecter() {
-     this._authSrv.seDeconnecter().subscribe(
-       value => this._router.navigate(['/auth'])
-     );
-   }
- 
+  /**
+   * Action déconnecter collègue.
+   */
+  seDeconnecter() {
+    this._authSrv.seDeconnecter().subscribe(
+      value => this._router.navigate(['/auth'])
+    );
+  }
+
 
 
   ngOnInit() {
-    this.collegue=this.authService.getCollegueConnecteObs();
+    /* this.collegue = this.authService.getCollegueConnecteObs(); */
+    this.collegue = this._authSrv.collegueConnecteObs;
   }
 
-// On utilise un observable pour récupérer le rôle du collègue qui se connecte
-
-
-// Est connecté en tant qu'administrateur
-  isAdmin():boolean {
+  // Est connecté en tant qu'administrateur
+  isAdmin(): boolean {
     let result = false;
     this.collegue.subscribe(c => {
-      if (c && c.roles && c.roles.length>0){
-        for (let i=0; i<c.roles.length; i++){
-          if (c.roles[i]=='ROLE_ADMINISTRATEUR'){
-            result= true;
+      if (c && c.roles && c.roles.length > 0) {
+        for (let i = 0; i < c.roles.length; i++) {
+          if (c.roles[i] == 'ROLE_ADMINISTRATEUR') {
+            result = true;
           }
         }
       }
@@ -69,9 +67,9 @@ export class MenuComponent implements OnInit {
 // Est connecté en tant qu'employé
   isEmploye():boolean {
     this.collegue.subscribe(c => {
-      if (c && c.roles && c.roles.length>0){
-        for (let i=0; i<c.roles.length; i++){
-          if (c.roles[i]=='ROLE_UTILISATEUR'){
+      if (c && c.roles && c.roles.length > 0) {
+        for (let i = 0; i < c.roles.length; i++) {
+          if (c.roles[i] == 'ROLE_UTILISATEUR') {
             return true;
           }
         }
@@ -79,5 +77,7 @@ export class MenuComponent implements OnInit {
       return false;
     });
     return false;
-  } 
+  }
+
+
 }
