@@ -66,4 +66,6 @@
     </div>
   </div>
 </div>
-<!--  Modale pour modifier la nature de mission -->
+<div *ngIf="err">
+  <label class="red-text">{{errMsg}}</label>
+</div>

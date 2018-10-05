@@ -13,7 +13,6 @@ export class NoteDeFraisComponent implements OnInit {
   id: string;
   errMsg: string;
   noteDeFrais: NoteDeFrais;
-  err: string;
   enum: NatureLigne[];
   selectedLigneDeFrais: LigneDeFrais = new LigneDeFrais(null, null, null, null)
   selectedNoteDeFrais: NoteDeFrais = new NoteDeFrais(null, null, new Mission(null, null, null, null, null, null, null, null, null, null, null));
@@ -42,9 +41,9 @@ export class NoteDeFraisComponent implements OnInit {
       ((errServeur: HttpErrorResponse) => {
 
         if (errServeur.error.message) {
-          this.err = errServeur.error.message;
+          this.errMsg = errServeur.error.message;
         } else {
-          this.err = errServeur.error.text;
+          this.errMsg = errServeur.error.text;
         }
       }));
 
@@ -65,9 +64,9 @@ export class NoteDeFraisComponent implements OnInit {
       ((errServeur: HttpErrorResponse) => {
 
         if (errServeur.error.message) {
-          this.err = errServeur.error.message;
+          this.errMsg = errServeur.error.message;
         } else {
-          this.err = errServeur.error.text;
+          this.errMsg = errServeur.error.text;
         }
       }));
   }
@@ -80,9 +79,9 @@ export class NoteDeFraisComponent implements OnInit {
 
       ((errServeur: HttpErrorResponse) => {
         if (errServeur.error.message) {
-          this.err = errServeur.error.message;
+          this.errMsg = errServeur.error.message;
         } else {
-          this.err = errServeur.error.text;
+          this.errMsg = errServeur.error.text;
         }
       }));
     this.ngOnInit();

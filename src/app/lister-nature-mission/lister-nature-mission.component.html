@@ -1,214 +1,213 @@
-
- <div class="container">
-
+<div class="container">
 
 
-<!--  En-tête -->
-<h3>Nature des missions</h3>
-<p>
+
+  <!--  En-tête -->
+  <h3>Nature des missions</h3>
+  <p>
     Vous trouverez dans cette section le récapitulatif de vos missions (TJM, prime, facturation).
-</p>
+  </p>
 
 
 
-<!--  En cas d'erreur -->
-<div *ngIf="err">
-  <label class="red-text">Problème d'accès au backend : {{err}}</label>
-</div>
+  <!--  En cas d'erreur -->
+  <div *ngIf="err">
+    <label class="red-text">{{err}}</label>
+  </div>
 
 
 
-<!--  Tableau de nature de missions -->
-<div class="row">
-<table class="table table-hover">
-  <thead>
-    <tr class="table-success">
-      <th scope="col">Nom</th>
-      <th scope="col">Facturée</th>
-      <th scope="col">Prime</th>
-      <th scope="col">TJM (en €)</th>
-      <th scope="col">Prime (en %)</th>
+  <!--  Tableau de nature de missions -->
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+        <tr class="table-success">
+          <th scope="col">Nom</th>
+          <th scope="col">Facturée</th>
+          <th scope="col">Prime</th>
+          <th scope="col">TJM (en €)</th>
+          <th scope="col">Prime (en %)</th>
 
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <tr *ngFor="let natureMission of natureMissions">
+      <tbody>
+        <tr *ngFor="let natureMission of natureMissions">
 
-      <td>{{natureMission.name}}</td>
-      <td *ngIf="natureMission.facturation === facturee">OUI</td>
-      <td *ngIf="natureMission.facturation === nonFacturee">NON</td>
-      <td *ngIf="natureMission.facturation === null">-</td>
-      <td *ngIf="natureMission.prime === true">OUI</td>
-      <td *ngIf="natureMission.prime === null">-</td>
-      <td *ngIf="natureMission.prime === false">NON</td>
-      <td *ngIf="natureMission.tjm">{{natureMission.tjm}}</td>
-      <td *ngIf="!natureMission.tjm">-</td>
-      <td *ngIf="natureMission.pourcentage">{{natureMission.pourcentage}}</td>
-      <td *ngIf="!natureMission.pourcentage">-</td>
+          <td>{{natureMission.name}}</td>
+          <td *ngIf="natureMission.facturation === facturee">OUI</td>
+          <td *ngIf="natureMission.facturation === nonFacturee">NON</td>
+          <td *ngIf="natureMission.facturation === null">-</td>
+          <td *ngIf="natureMission.prime === true">OUI</td>
+          <td *ngIf="natureMission.prime === null">-</td>
+          <td *ngIf="natureMission.prime === false">NON</td>
+          <td *ngIf="natureMission.tjm">{{natureMission.tjm}}</td>
+          <td *ngIf="!natureMission.tjm">-</td>
+          <td *ngIf="natureMission.pourcentage">{{natureMission.pourcentage}}</td>
+          <td *ngIf="!natureMission.pourcentage">-</td>
 
-    <!--  Boutons d'action : éditer ou supprimer --> 
-      <i class="fa edit" aria-hidden="true">
-          <div class="row">
-          <div class="col-5">
-          <i type="button" (click)="basicModal.show() ; save(natureMission)" class="fa fa-lg fa-pencil text-success" size="sm"></i>
+          <!--  Boutons d'action : éditer ou supprimer -->
+          <i class="fa edit" aria-hidden="true">
+            <div class="row">
+              <div class="col-5">
+                <i type="button" (click)="basicModal.show() ; save(natureMission)" class="fa fa-lg fa-pencil text-success" size="sm"></i>
+              </div>
+              <div class="col-5">
+                <i type="button" (click)="delete(natureMission)" class="fa fa-lg fa-trash text-danger" size="sm"></i>
+              </div>
+            </div>
+          </i>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <!--  Bouton d'ajout de mission -->
+  <div class="row">
+
+    <button type="button" class="btn btn-outline-success pull-right" (click)="initCreate();addModal.show()">Ajouter une Nature de mission</button>
+
+  </div>
+
+
+  <!--  Modale pour modifier la nature de mission -->
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Modifier une nature de mission</h4>
         </div>
-        <div class="col-5">
-          <i type="button" (click)="delete(natureMission)" class="fa fa-lg fa-trash text-danger" size="sm"></i>
+        <div class="modal-body">
+
+          <form name="myForm" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
+            <!-- Name -->
+            <div class="md-form">
+
+              <input type="text" id="matriculeform" class="form-control mb-4" [(ngModel)]="selectedNatureMission.name" name="name" required
+                mdbInputDirective>
+              <label for="matriculeform"> Nom</label>
+            </div>
+
+            <!-- Facturation -->
+            <div class="md-form">
+
+              <select class="browser">
+                <option value="" disabled selected>Facturation</option>
+                <option value="true">OUI</option>
+                <option value="false">NON</option>
+              </select>
+
+            </div>
+            <!-- Prime -->
+            <div class="md-form">
+
+              <select class="browser">
+                <option value="" disabled selected>Prime</option>
+                <option value="true">OUI</option>
+                <option value="false">NON</option>
+              </select>
+
+            </div>
+
+            <!-- TJM -->
+            <div class="md-form">
+              <input type="text" id="photoform" class="form-control mb-4" [(ngModel)]="selectedNatureMission.tjm" name="tjm" mdbInputDirective>
+              <label for="photoform">TJM</label>
+            </div>
+            <!-- pourcentage -->
+            <div class="md-form">
+              <input type="text" id="pourcentage" class="form-control mb-4" [(ngModel)]="selectedNatureMission.pourcentage" name="pourcentage"
+                mdbInputDirective>
+              <label for="pourcentage">Pourcentage</label>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- Boutons Fermer et Sauvegarder -->
+        <div class="modal-footer">
+          <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Fermer</button>
+          <button type="button" mdbBtn class="btn btn-outline-success" (click)="updateClick();basicModal.hide()" mdbWavesEffect>Sauvegarder</button>
         </div>
       </div>
-        </i>
-
-      </tr>
-
-  </tbody>
-</table>
-</div>
-
-
-<!--  Bouton d'ajout de mission -->
-<div class="row">
-
-  <button type="button" class="btn btn-outline-success pull-right" (click)="initCreate();addModal.show()">Ajouter une Nature de mission</button>
-
-</div>
-
-
-<!--  Modale pour modifier la nature de mission -->
-<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-        <span aria-hidden="true">×</span>
-      </button>
-      <h4 class="modal-title w-100" id="myModalLabel">Modifier une nature de mission</h4>
-    </div>
-    <div class="modal-body">
-
-      <form name="myForm" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
-        <!-- Name -->
-        <div class="md-form">
-
-          <input type="text" id="matriculeform" class="form-control mb-4" [(ngModel)]="selectedNatureMission.name" name="name" required
-            mdbInputDirective>
-          <label for="matriculeform"> Nom</label>
-        </div>
-
-        <!-- Facturation -->
-        <div class="md-form">
-
-          <select class="browser">
-            <option value="" disabled selected>Facturation</option>
-            <option value="true">OUI</option>
-            <option value="false">NON</option>
-          </select>
-
-        </div>
-        <!-- Prime -->
-        <div class="md-form">
-
-          <select class="browser">
-            <option value="" disabled selected>Prime</option>
-            <option value="true">OUI</option>
-            <option value="false">NON</option>
-          </select>
-
-        </div>
-
-        <!-- TJM -->
-        <div class="md-form">
-          <input type="text" id="photoform" class="form-control mb-4" [(ngModel)]="selectedNatureMission.tjm" name="tjm" mdbInputDirective>
-          <label for="photoform">TJM</label>
-        </div>
-        <!-- pourcentage -->
-        <div class="md-form">
-          <input type="text" id="pourcentage" class="form-control mb-4" [(ngModel)]="selectedNatureMission.pourcentage" name="pourcentage"
-            mdbInputDirective>
-          <label for="pourcentage">Pourcentage</label>
-        </div>
-      </form>
-
-    </div>
-
-    <!-- Boutons Fermer et Sauvegarder -->
-    <div class="modal-footer">
-      <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Fermer</button>
-      <button type="button" mdbBtn  class="btn btn-outline-success" (click)="updateClick();basicModal.hide()" mdbWavesEffect>Sauvegarder</button>
     </div>
   </div>
-</div>
 
 
 
+  <!--  Modale pour ajouter nature de mission -->
 
-<!--  Modale pour ajouter nature de mission -->
-</div>
-<div mdbModal #addModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close pull-right" aria-label="Close" (click)="addModal.hide()">
-        <span aria-hidden="true">×</span>
-      </button>
-      <h4 class="modal-title w-100" id="myModalLabel">Ajouter une nature de mission</h4>
+  <div mdbModal #addModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="addModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Ajouter une nature de mission</h4>
+        </div>
+        <div class="modal-body">
+
+          <form name="Form" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
+
+            <!-- Name -->
+            <div class="md-form">
+              <input type="text" id="matriculeform" class="form-control mb-4" name="name" [(ngModel)]="selectedNatureMission.name" required
+                mdbInputDirective>
+              <label for="matriculeform"> Nom</label>
+            </div>
+
+            <!-- Facturation -->
+            <div class="md-form">
+              <select class="browser" [(ngModel)]="selectedNatureMission.facturation" name="facturation">
+                <option [value]="select.value" *ngFor="let select of tabSelectFacturation" mdbInputDirective>
+                  {{select.label}}</option>
+              </select>
+              <label for="prime">Facturation</label>
+            </div>
+
+            <!-- Prime -->
+            <div class="md-form">
+              <select class="browser" [(ngModel)]="selectedNatureMission.prime" name="prime" (ngModelChange)="afficher()" required>
+                <option [value]="selectPrime.value" *ngFor="let selectPrime of tabSelectPrime" mdbInputDirective>
+                  {{selectPrime.label}}</option>
+              </select>
+              <label for="prime">Prime</label>
+            </div>
+
+
+            <!-- TJM -->
+            <div class="md-form" *ngIf="selectedNatureMission.facturation == 'FACTUREE'">
+              <input type="text" id="tjm" class="form-control mb-4" name="tjm" [(ngModel)]="selectedNatureMission.tjm" mdbInputDirective>
+              <label for="tjm">TJM</label>
+            </div>
+
+            <!-- pourcentage -->
+            <div class="md-form" *ngIf="selectedNatureMission.prime == 'true'">
+              <input type="text" id="pourcentage" class="form-control mb-4" name="pourcentage" [(ngModel)]="selectedNatureMission.pourcentage"
+                mdbInputDirective>
+              <label for="pourcentage">Pourcentage</label>
+            </div>
+
+          </form>
+
+        </div>
+
+        <!-- Boutons Fermer et Sauvegarder -->
+        <div class="modal-footer">
+          <button type="button" mdbBtn class="btn btn-outline-dark" aria-label="Close" (click)="addModal.hide()" mdbWavesEffect>Fermer</button>
+          <button type="button" mdbBtn class="btn btn-outline-success" (click)="new();addModal.hide()" mdbWavesEffect>Sauvegarder</button>
+        </div>
+
+
+      </div>
     </div>
-    <div class="modal-body">
-
-      <form name="Form" class="text-center border border-light p-5" (ngSubmit)="submit()" #form="ngForm">
-        
-        <!-- Name -->
-        <div class="md-form">
-          <input type="text" id="matriculeform" class="form-control mb-4" name="name" [(ngModel)]="selectedNatureMission.name" required
-            mdbInputDirective>
-          <label for="matriculeform"> Nom</label>
-        </div>
-
-        <!-- Facturation -->
-        <div class="md-form">
-          <select class="browser" [(ngModel)]="selectedNatureMission.facturation" name="facturation">
-            <option [value]="select.value" *ngFor="let select of tabSelectFacturation" mdbInputDirective>
-              {{select.label}}</option>
-          </select>
-          <label for="prime">Facturation</label>
-        </div>
-
-        <!-- Prime -->
-        <div class="md-form">
-          <select class="browser" [(ngModel)]="selectedNatureMission.prime" name="prime" (ngModelChange)="afficher()" required>
-            <option [value]="selectPrime.value" *ngFor="let selectPrime of tabSelectPrime" mdbInputDirective>
-              {{selectPrime.label}}</option>
-          </select>
-          <label for="prime">Prime</label>
-        </div>
-
-
-        <!-- TJM -->
-        <div class="md-form" *ngIf="selectedNatureMission.facturation == 'FACTUREE'">
-          <input type="text" id="tjm" class="form-control mb-4" name="tjm" [(ngModel)]="selectedNatureMission.tjm" mdbInputDirective>
-          <label for="tjm">TJM</label>
-        </div>
-
-        <!-- pourcentage -->
-        <div class="md-form" *ngIf="selectedNatureMission.prime == 'true'">
-          <input type="text" id="pourcentage" class="form-control mb-4" name="pourcentage" [(ngModel)]="selectedNatureMission.pourcentage"
-            mdbInputDirective>
-          <label for="pourcentage">Pourcentage</label>
-        </div>
-
-      </form>
-
-    </div>
-
-    <!-- Boutons Fermer et Sauvegarder -->
-    <div class="modal-footer">
-        <button type="button" mdbBtn  class="btn btn-outline-dark" aria-label="Close" (click)="addModal.hide()" mdbWavesEffect>Fermer</button>
-        <button type="button" mdbBtn  class="btn btn-outline-success" (click)="new();addModal.hide()" mdbWavesEffect>Sauvegarder</button>
-    </div>
-
-
   </div>
-</div>
-</div>
 </div>
