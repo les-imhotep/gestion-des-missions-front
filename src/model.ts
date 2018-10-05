@@ -10,35 +10,27 @@ export class Absence {
     ) { }
 }
 
-export class NoteDeFrais {
-    constructor(
-        public id: Number,
-        public lignesDeFrais: LigneDeFrais[]
-    ) { }
+export class NoteDeFrais{
+constructor(
+    public id:Number,
+   public lignesDeFrais:LigneDeFrais[],
+   public mission:Mission
+    ){}
 }
 
 export class LigneDeFrais {
     constructor(
         public id: Number,
-        public dateDebut: Date,
-        public dateFin: Date,
+        public date: Date,
         public natureMission: NatureMission,
-        public villeDepart: string,
-        public villeArrivee: string,
-        public transport: Transport,
         public frais: Number
-
     ) { }
 
     static fromLigneDeFraisServeur(noteDeFraisServeur: any): LigneDeFrais {
-        const noteIhm = new LigneDeFrais(null, null, null, null, null, null, null, null);
-        noteIhm.dateDebut = noteDeFraisServeur.dateDebut;
-        noteIhm.dateFin = noteDeFraisServeur.dateFin;
+        const noteIhm = new LigneDeFrais(null, null, null, null);
+        noteIhm.date= noteDeFraisServeur.date;
+        noteIhm.natureMission = noteDeFraisServeur.natureLigne;
         noteIhm.frais = noteDeFraisServeur.frais;
-        noteIhm.natureMission = noteDeFraisServeur.natureMission;
-        noteIhm.transport = noteDeFraisServeur.transport;
-        noteIhm.villeArrivee = noteDeFraisServeur.villeArrivee;
-        noteIhm.villeDepart = noteDeFraisServeur.villeDepart;
         return noteIhm;
     }
 

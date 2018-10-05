@@ -29,5 +29,14 @@ const URL_BACKEND= environment.baseUrl;
   constructor(private _http: HttpClient) {}
 
 
+
   // Lister les notes de frais
+listerNoteDeFrais(): Observable<NoteDeFrais[]> {
+
+  return this._http.get(URL_BACKEND).pipe(
+    map((data: any[]) =>
+        data.map(noteDeFrais =>
+            new NoteDeFrais(noteDeFrais.id,noteDeFrais.lignesDeFrais , noteDeFrais.mission)),
+    ));
+}
 }

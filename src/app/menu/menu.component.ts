@@ -50,22 +50,24 @@ export class MenuComponent implements OnInit {
     return result;
   }
 
-  // Est connecté en tant que manager
-  isManager(): boolean {
+// Est connecté en tant que manager
+  isManager():boolean {
     let result = false;
     this.collegue.subscribe(c => {
-      if (c && c.roles && c.roles.length > 0) {
-        for (let i = 0; i < c.roles.length; i++) {
-          if (c.roles[i] == 'ROLE_MANAGER') {
-            result = true;
+      if (c && c.roles && c.roles.length>0){
+        for (let i=0; i<c.roles.length; i++){
+          if (c.roles[i]=='ROLE_MANAGER'){
+            result= true;
           }
         }
       }
     });
     return result;
   }
-  // Est connecté en tant qu'employé
-  isEmploye(): boolean {
+
+
+// Est connecté en tant qu'employé
+  isEmploye():boolean {
     this.collegue.subscribe(c => {
       if (c && c.roles && c.roles.length > 0) {
         for (let i = 0; i < c.roles.length; i++) {
