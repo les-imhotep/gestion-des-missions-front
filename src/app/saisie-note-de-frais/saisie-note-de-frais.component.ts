@@ -19,14 +19,14 @@ err: string;
 selectedLigneDeFrais : LigneDeFrais = new LigneDeFrais(null, null, null, null);
 formulaire: Formulaire;
 
-constructor(private _noteDeFraisSrv:NoteDeFraisService) { }
-// en cours
+constructor(private _lignedefraissrv:LigneDeFraisService) { }
+
 
 
   ngOnInit() {
 
   // Lister les notes de frais
-    this._noteDeFraisSrv.listerLigneDeFrais()
+    this._lignedefraissrv.listerLigneDeFrais()
     .subscribe(
       tableauNotes => this.ligneDeFraisTab = tableauNotes,
       errServeur => {
