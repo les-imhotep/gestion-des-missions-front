@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TechComponent } from './tech/tech.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, ChartsModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from "@angular/forms";
 import { StatutConnecteService } from "./auth/statut-connecte.service";
@@ -21,6 +21,8 @@ import { ListerNatureMissionComponent } from './lister-nature-mission/lister-nat
 import { ListeMissionComponent } from './liste-mission/liste-mission.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
+
+
  
 
 const routes: Routes = [
@@ -55,6 +57,8 @@ const routes: Routes = [
     ListerNatureMissionComponent,
     ListeMissionComponent,
     jqxChartComponent
+   
+
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,7 @@ const routes: Routes = [
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -10,6 +10,7 @@ import { LigneDeFraisService } from '../../services/lignedefrais.service';
 })
 export class SaisieNoteDeFraisComponent implements OnInit {
 
+  /*
   // Liste des notes de frais
 ligneDeFraisTab:LigneDeFrais[];
 ligneDeFrais:LigneDeFrais;
@@ -23,7 +24,7 @@ constructor(private _lignedefraissrv:LigneDeFraisService) { }
 
 
 
-  ngOnInit() {
+ */ ngOnInit() { /*
 
   // Lister les notes de frais
     this._lignedefraissrv.listerLigneDeFrais()
@@ -110,8 +111,8 @@ constructor(private _lignedefraissrv:LigneDeFraisService) { }
   // Pour exporter un fichier PDF
   notesdefraisToPDF() {
     this._lignedefraissrv.notesdefraisToPDF();
-  }
+  } */
 
   }
-
+} // a suppr
 
