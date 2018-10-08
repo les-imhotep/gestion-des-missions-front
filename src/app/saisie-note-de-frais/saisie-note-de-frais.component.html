@@ -9,7 +9,7 @@
 
 
   <!--  Traitement des erreurs -->
-  <div class="erreur" *ngIf="err">
+  <div class="red-text" *ngIf="err">
     {{err}}
   </div>
 
@@ -19,13 +19,13 @@
     <div class="col-4">
       <!--  Récapitulatif de note de frais -->
       <div class="card" style="width: 20rem;">
-        <img class="card-img-top" src="/assets/image/notedefrais.jpg" alt="Card image cap">
+        <img class="card-img-top" src="assets/image/notedefrais.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">
             <i class="fa fa-lg fa-download"></i> Notes de frais</h5>
           <p class="card-text">Téléchargez le récapitulatif de vos notes de frais au format .pdf</p>
           <div class="row">
-            <img src="/assets/image/pdf.png" style="align-content: center" width="20%" height="20%">
+            <img src="assets/image/pdf.png" style="align-content: center" width="20%" height="20%">
             <button class="btn btn-outline-success" (click)="notesDeFraisToPDF()" mdbBtn>Téléchargement</button>
           </div>
         </div>
